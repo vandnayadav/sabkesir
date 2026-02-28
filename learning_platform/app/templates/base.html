@@ -1,13 +1,18 @@
+
+<html lang="en">
 {% load static %}
-<!doctype html>
-<html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}Courses | Education{% endblock %}</title>
+    <title>Courses | Education</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-    <!-- CSS -->
+    <!-- CSS here -->
+    {% load static %}
+
 <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">
@@ -22,75 +27,126 @@
 <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
 </head>
 
 <body>
-
-<!-- Preloader -->
-<div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-circle"></div>
-    </div>
-</div>
-
-<!-- HEADER -->
-<header>
-    <div class="header-area header-transparent">
-        <div class="main-header">
-            <div class="header-bottom header-sticky">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-
-                        <!-- Logo -->
-                        <div class="col-xl-2 col-lg-2">
-                            <div class="logo">
-                                <a href="{% url 'index' %}">
-                                    <img src="{% static 'assets/img/logo/logo.png' %}" alt="">
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="col-xl-10 col-lg-10">
-                            <div class="menu-wrapper d-flex justify-content-end">
-                                <nav>
-                                    <ul id="navigation">
-                                        <li><a href="{% url 'index' %}">Home</a></li>
-                                        <li><a href="#">Courses</a></li>
-                                        <li><a href="{% url 'about' %}">About</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-
-                    </div>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                   
+                    <img src="{% static 'assets/img/logo/loder.png' %}" alt="">
                 </div>
             </div>
         </div>
     </div>
-</header>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparent">
+            <div class="main-header ">
+                <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10">
+                                <div class="menu-wrapper d-flex align-items-center justify-content-end">
+                                    <!-- Main-menu -->
+                                    <div class="main-menu d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                                                                          
+                                                <li class="active" ><a href="{% url 'index' %}">Home</a></li>
+                                                <li><a href="{% url 'courses' %}">Courses</a></li>
+                                                <li><a href="{% url 'about' %}">About</a></li>
+                                                <li><a href="#">Blog</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="blog_details.html">Blog Details</a></li>
+                                                        <li><a href="elements.html">Element</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <!-- Button -->
+                                                <li class="button-header margin-left "><a href="#" class="btn">Join</a></li>
+                                                <li class="button-header"><a href="login.html" class="btn btn3">Log in</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
 
-<!-- PAGE CONTENT -->
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
 
-<!-- FOOTER -->
-<footer class="footer-bg">
-    <div class="container text-center p-4">
-        <p>© 2026 Online Learning Platform</p>
-    </div>
-</footer>
+      
+      {% block banner-slider %}{% endblock banner-slider %}
+      {% block information %}{% endblock information %}
+      {% block main-content %}{% endblock main-content %}
 
-<!-- JS -->
+      <div class="footer-bottom-area">
+            <div class="container">
+                <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Footer End-->
+      </div>
+  </footer> 
+  <!-- Scroll Up -->
+  <div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+
+<!-- JS here -->
+<script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
 <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
 <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'assets/js/slick.min.js' %}"></script>
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<script src="{% static 'assets/js/animated.headline.js' %}"></script>
+<script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'assets/js/gijgo.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'assets/js/jquery.barfiller.js' %}"></script>
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'assets/js/hover-direction-snake.min.js' %}"></script>
+<script src="{% static 'assets/js/contact.js' %}"></script>
+<script src="{% static 'assets/js/jquery.form.js' %}"></script>
+<script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'assets/js/mail-script.js' %}"></script>
+<script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+<script src="{% static 'assets/js/plugins.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
-
 </body>
 </html>
