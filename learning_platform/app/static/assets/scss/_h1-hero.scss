@@ -1,6 +1,6 @@
 // Home Page Hero
 .slider-height {
-    min-height: 854px;
+    min-height: 500px;
     background-repeat:no-repeat ;
     background-position: center center;
     background-size: cover;
@@ -57,13 +57,10 @@
 }
 
 .slider-area, .slider-area2{
-    background-image: url(../img/hero/h1_hero.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    
     // min-height: 854px;
     &.slider-area2{
-        background-image: url(../img/hero/hero2.png);
+        
     }
     .hero__caption{
         overflow: hidden;
