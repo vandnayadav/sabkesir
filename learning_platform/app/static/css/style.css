@@ -10658,3 +10658,42 @@ h6,
   font-size: 18px;
   margin-top: 20px;
 }
+
+/* ===== Premium Contact Page ===== */
+
+/* Our Family Gallery */
+/* Our Family Slider */
+.family-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.slider {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(180px * 10);
+  animation: scroll 25s linear infinite;
+}
+
+.slide-track img {
+  width: 160px;
+  height: 120px;
+  margin: 0 10px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Right to Left Motion */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

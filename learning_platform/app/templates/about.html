@@ -2,6 +2,7 @@
 {% load static %}
 
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>Edukate - Online Education Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -23,22 +24,22 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/about.css' %}" rel="stylesheet">
 </head>
-
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark">
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <small><i class="fa fa-phone-alt mr-2"></i>+91-8962289226</small>
                     <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                    <small><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</small>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-2" href="">
+                    <a class="text-white px-2" href="https://www.facebook.com/share/1CRHv8Q2Wi/"target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a class="text-white px-2" href="">
@@ -47,10 +48,10 @@
                     <a class="text-white px-2" href="">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="text-white px-2" href="">
+                    <a class="text-white px-2" href="https://www.instagram.com/satendrasatyaj?igsh=bHJoMzVuN2kzZ3B4"target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-white pl-2" href="">
+                    <a class="text-white pl-2" href="https://youtube.com/@sabkesirsatendrasir?si=SfispYpiYL018F7V"target="_blank">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -88,18 +89,7 @@
 
 
     <!-- Header Start -->
-    <div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 90px;">
-        <div class="container text-center py-5">
-            <h1 class="text-white display-1">About</h1>
-            <div class="d-inline-flex text-white mb-5">
-                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
-                <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                <p class="m-0 text-uppercase">About</p>
-            </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Header End -->
 
 
@@ -109,7 +99,10 @@
             <div class="row">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="img/about.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100"
+     src="{% static 'img/about.jpeg' %}"
+     style="object-fit: cover;"
+     alt="About Image">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -117,7 +110,7 @@
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
                         <h1 class="display-4">First Choice For Online Education Anywhere</h1>
                     </div>
-                    <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
+                    <p>We provide a trusted online coaching platform designed to make learning simple, effective, and accessible for every student. Our expert instructors deliver well-structured live classes along with recorded sessions, so learners can revise anytime at their own pace. With focused guidance, clear concepts, and continuous support, we help students build strong fundamentals and confidence. Our platform connects quality education with smart technology, ensuring a smooth learning experience. Whether it is exam preparation or concept clarity, we are committed to helping students achieve their academic goals with consistency and dedication.</p>
                     <div class="row pt-3 mx-0">
                         <div class="col-3 px-0">
                             <div class="bg-success text-center p-4">
@@ -160,14 +153,14 @@
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
                         <h1 class="display-4">Why You Should Start Learning with Us?</h1>
                     </div>
-                    <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet.</p>
+                    <p class="mb-4 pb-2">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
                     <div class="d-flex mb-3">
                         <div class="btn-icon bg-primary mr-4">
                             <i class="fa fa-2x fa-graduation-cap text-white"></i>
                         </div>
                         <div class="mt-n1">
                             <h4>Skilled Instructors</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <p>Our experienced teachers explain Chemistry and Hindi in a simple and easy way, ensuring better understanding and concept clarity.</p>
                         </div>
                     </div>
                     <div class="d-flex mb-3">
@@ -175,8 +168,8 @@
                             <i class="fa fa-2x fa-certificate text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>International Certificate</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>Course Completion Certificate</h4>
+                            <p>Students receive a course completion certificate after finishing the Chemistry or Hindi course, recognizing their learning and effort.</p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -185,13 +178,16 @@
                         </div>
                         <div class="mt-n1">
                             <h4>Online Classes</h4>
-                            <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <p class="m-0">e offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="img/feature.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100"
+     src="{% static 'img/feature.jpeg' %}"
+     style="object-fit: cover;"
+     alt="About Image">
                     </div>
                 </div>
             </div>
@@ -199,6 +195,72 @@
     </div>
     <!-- Feature Start -->
 
+<div class="sir-section">
+    <div class="sir-image">
+        <img src="{% static 'img/logo-.png' %}" alt="Sir Image">
+    </div>
+
+    <div class="sir-content">
+        <h2>Sabke Sir</h2>
+        <p>
+                Our coaching is founded with the aim of delivering quality education in Chemistry and Hindi
+                through a structured, student-focused learning approach. We believe that strong concepts,
+                personal guidance, and consistent practice lead to academic success.
+            </p>
+            <p>
+                With experienced teachers and smart online learning tools, we connect students with
+                knowledge in a simple, clear, and effective way — anytime and anywhere.
+            </p>
+    </div>
+</div>    
+ 
+
+<!-- Our Family Section -->
+<div class="family-section">
+    <h2 class="text-center mb-4">Our Family</h2>
+
+    <div class="slider">
+        <div class="slide-track">
+            <img src="{% static 'img/f1.jpeg' %}">
+            <img src="{% static 'img/f2.jpeg' %}">
+            <img src="{% static 'img/f3.jpeg' %}">
+            <img src="{% static 'img/f4.jpeg' %}">
+            <img src="{% static 'img/f5.jpeg' %}">
+            <img src="{% static 'img/f6.jpeg' %}">
+
+            <!-- repeat images for smooth loop -->
+            <img src="{% static 'img/f1.jpeg' %}">
+            <img src="{% static 'img/f2.jpeg' %}">
+            <img src="{% static 'img/f3.jpeg' %}">
+            <img src="{% static 'img/f4.jpeg' %}">
+            <img src="{% static 'img/f5.jpeg' %}">
+            <img src="{% static 'img/f6.jpeg' %}">
+        </div>
+    </div>
+</div>
+    <!-- Our Family Section -->
+
+     <!-- Our Sir Section -->
+<div class="sir-section">
+    <div class="sir-image">
+        <img src="{% static 'img/about.jpeg' %}" alt="Sir Image">
+    </div>
+
+    <div class="sir-content">
+        <h2>Er. Satendra Dhakad Sir</h2>
+        <p>
+            Er. Satendra Dhakad Sir is the founder and owner of the coaching institute and a highly
+    respected Chemistry faculty with over 10 years of teaching experience.
+    He has guided thousands of students by building strong conceptual clarity
+    in Chemistry and making complex topics simple and easy to understand.
+        </p>
+        <p>
+            His teaching style is practical, student-friendly, and focuses on concept-based learning, numerical
+    problem solving, and exam-oriented preparation.
+        </p>
+    </div>
+</div>    
+     <!-- Our Sir Section -->
 
     <!-- Footer Start -->
     <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
@@ -208,7 +270,7 @@
                     <a href="index.html" class="navbar-brand">
                         <h1 class="mt-n2 text-uppercase text-white"><i class="fa fa-book-reader mr-3"></i>Edukate</h1>
                     </a>
-                    <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr. Ipsum ea lorem at et diam est, tempor rebum ipsum sit ea tempor stet et consetetur dolores. Justo stet diam ipsum lorem vero clita diam</p>
+                    <p class="m-0">“Learning is not just about lessons, it’s about growth and confidence. We provide structured guidance, expert support, and flexible learning to help every student move closer to success.”</p>
                 </div>
                 <div class="col-md-6 mb-5">
                     <h3 class="text-white mb-4">Newsletter</h3>
@@ -225,24 +287,24 @@
             <div class="row">
                 <div class="col-md-4 mb-5">
                     <h3 class="text-white mb-4">Get In Touch</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Rajeev Nagar, Vidisha, Madhya Pradesh, INDIA</p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>+91-8962289226</p>
+                    <p><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</p>
                     <div class="d-flex justify-content-start mt-4">
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="https://youtube.com/@sabkesirsatendrasir?si=SfispYpiYL018F7V"target="_blank"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="https://www.facebook.com/share/1CRHv8Q2Wi/"target="_blank"><i class="fab fa-2x fa-facebook-f"></i></a>
                         <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
-                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
+                        <a class="text-white" href="https://www.instagram.com/satendrasatyaj?igsh=bHJoMzVuN2kzZ3B4"target="_blank"><i class="fab fa-2x fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
                     <h3 class="text-white mb-4">Our Courses</h3>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Chemistry</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Physics</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Hindi</a>
+                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Mathematics</a>
+        
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
@@ -262,11 +324,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
-                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">Your Site Name</a>. All Rights Reserved.
+                    <p class="m-0">Copyright &copy; <a class="text-white" href="#">Web-Based Online Coaching Platform</a>. All Rights Reserved.
                     </p>
                 </div>
                 <div class="col-md-6 text-center text-md-right">
-                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a></a>
+                    <p class="m-0">Designed by <a class="text-white" href="https://htmlcodex.com">Vandana</a> Sanjana <a href="https://themewagon.com" target="_blank">And Sonu</a></a>
                     </p>
                 </div>
             </div>

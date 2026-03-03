@@ -1,12 +1,11 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course, Cart
 
-=======
+
 from django.shortcuts import render, redirect
 from .models import Course
->>>>>>> 6b4c67d75938b77a5b31fcd3da2233ab642e9eac
+
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -35,7 +34,7 @@ def contact(request):
 
 def courses(request):
     courses = Course.objects.all()
-<<<<<<< HEAD
+
     return render(request, "course.html", {'courses': courses})
 
 
@@ -92,7 +91,7 @@ def remove_from_cart(request, id):
     ).delete()
 
     return redirect('cart')
-=======
+
     return render(request, "course.html", {'course': courses})
 
 
@@ -180,4 +179,3 @@ def reset_password(request, uidb64, token):
         return redirect('login')
 
     return render(request, "reset_password.html")
->>>>>>> 6b4c67d75938b77a5b31fcd3da2233ab642e9eac
