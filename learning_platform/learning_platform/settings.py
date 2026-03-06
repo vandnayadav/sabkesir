@@ -135,3 +135,7 @@ EMAIL_HOST_USER = 'projectclient26@gmail.com'
 EMAIL_HOST_PASSWORD = 'eagy rfwj znzk zrfp'
 
 DEFAULT_FROM_EMAIL = 'projectclient26@gmail.com'
+
+YOUTUBE_CHANNEL_ID = "UCON7G9L2CdpJKVJt7DIqTcQ"
+LOGIN_URL = 'app:login'
+LOGIN_REDIRECT_URL = 'app:index'

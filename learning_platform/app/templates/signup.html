@@ -83,8 +83,12 @@
                     </div>
                     <a href="/contact" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="/singup" class="btn btn-primary mr-3">Sing up</a>
-                 <a href="/login" class="btn btn-success">Login</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'app:logout' %}" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="{% url 'app:signup' %}" class="btn btn-primary mr-3">Sign up</a>
+                <a href="{% url 'app:login' %}" class="btn btn-success">Login</a>
+                {% endif %}
             </div>
         </nav>
     </div>
@@ -191,8 +195,11 @@
 </style>
 
 <main class="login-body" data-vide-bg="assets/img/login-bg.mp4">
-    <form class="form-default" method="POST" action="{% url 'signup' %}">
+    <form class="form-default" method="POST" action="{% url 'app:signup' %}">
         {% csrf_token %}
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
         <div class="login-form">
             <h2>Registration Here</h2>
 
@@ -227,7 +234,7 @@
             </div>
 
             <!-- Django url -->
-            <a href="{% url 'login' %}" class="registration">login</a>
+            <a href="{% url 'app:login' %}{% if request.GET.next %}?next={{ request.GET.next|urlencode }}{% endif %}" class="registration">login</a>
 
         </div>
     </form>

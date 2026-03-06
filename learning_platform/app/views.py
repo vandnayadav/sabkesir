@@ -1,20 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Course, Cart
-
-
 from django.shortcuts import render, redirect
 from .models import Course
-
-
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+from django.http import JsonResponse
+from .models import LiveClass, RecordedReplay
+from django.contrib.auth.decorators import login_required
 
 
 # ---------- NORMAL PAGES ----------
@@ -32,10 +32,11 @@ def contact(request):
 
 
 
+@login_required(login_url='app:login')
 def courses(request):
     courses = Course.objects.all()
-
     return render(request, "course.html", {'courses': courses})
+   
 
 
 
@@ -54,7 +55,7 @@ def add_to_cart(request, course_id):
 
     if cart_item:
         # already added → go to cart page
-        return redirect('cart')
+        return redirect('app:cart')
 
     # add new item
     Cart.objects.create(
@@ -62,7 +63,7 @@ def add_to_cart(request, course_id):
         course=course
     )
 
-    return redirect('cart')
+    return redirect('app:cart')
 
 
 # CART PAGE
@@ -90,9 +91,7 @@ def remove_from_cart(request, id):
         course=course
     ).delete()
 
-    return redirect('cart')
-
-    return render(request, "course.html", {'course': courses})
+    return redirect('app:cart')
 
 
 # ---------- SIGNUP ----------
@@ -101,17 +100,20 @@ def signup_view(request):
         name = request.POST['name']
         email = request.POST['email']
         password = request.POST['password']
+        next_url = request.POST.get('next')
 
         if User.objects.filter(username=email).exists():
             messages.error(request, "Email already exists")
-            return redirect('signup')
+            return redirect('app:signup')
 
         user = User.objects.create_user(username=email, email=email, password=password)
         user.first_name = name
         user.save()
 
         login(request, user)
-        return redirect('login')
+        if next_url:
+            return redirect(next_url)
+        return redirect('app:index')
 
     return render(request, 'signup.html')
 
@@ -121,15 +123,18 @@ def login_view(request):
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
+        next_url = request.POST.get('next')
 
         user = authenticate(username=email, password=password)
 
         if user:
             login(request, user)
-            return redirect('index')
+            if next_url:
+                return redirect(next_url)
+            return redirect('app:index')
         else:
-            messages.error(request, "Invalid credentials")
-            return redirect('login')
+            messages.error(request, "Invalid email or password. If you are new please signup.")
+            return redirect('app:login')
 
     return render(request, 'login.html')
 
@@ -137,7 +142,7 @@ def login_view(request):
 # ---------- LOGOUT ----------
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('app:login')
 
 
 # ---------- FORGOT PASSWORD ----------
@@ -176,6 +181,66 @@ def reset_password(request, uidb64, token):
         password = request.POST['password']
         user.set_password(password)
         user.save()
-        return redirect('login')
+        return redirect('app:login')
 
     return render(request, "reset_password.html")
+
+#Live class
+
+# Make sure these exist at the bottom of your views.py
+
+@login_required(login_url='app:login')
+def live_classes_home(request):
+    live_now = LiveClass.objects.filter(status='live').first()
+
+    upcoming = LiveClass.objects.filter(
+        status='upcoming',
+        scheduled_at__gte=timezone.now()
+    ).order_by('scheduled_at')[:6]
+
+    replays = RecordedReplay.objects.select_related('live_class').order_by('-recorded_at')[:6]
+
+    context = {
+        'live_now': live_now,
+        'upcoming_classes': upcoming,
+        'replays': replays,
+    }
+
+    return render(request, 'live_classes/home.html', context)
+
+
+@login_required(login_url='app:login')
+def live_class_detail(request, pk):
+    live_class = get_object_or_404(LiveClass, pk=pk)
+    replay = getattr(live_class, 'replay', None)
+
+    embed_url = None
+    chat_url = None
+    youtube_watch_url = None
+
+    if live_class.status == 'live':
+        embed_url = live_class.youtube_live_embed_url
+        chat_url = live_class.youtube_chat_url
+        youtube_watch_url = live_class.youtube_live_watch_url
+    elif live_class.status == 'ended' and replay:
+        embed_url = replay.embed_url
+        youtube_watch_url = replay.watch_url
+
+    context = {
+        'live_class': live_class,
+        'replay': replay,
+        'embed_url': embed_url,
+        'chat_url': chat_url,
+        'youtube_watch_url': youtube_watch_url,
+    }
+    return render(request, 'live_classes/detail.html', context)
+
+
+def api_live_status(request):
+    live_now = LiveClass.objects.filter(status='live').first()
+    data = {
+        'is_live': live_now is not None,
+        'class_id': live_now.pk if live_now else None,
+        'title': live_now.title if live_now else None,
+    }
+    return JsonResponse(data)

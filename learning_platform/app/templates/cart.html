@@ -52,8 +52,12 @@
                     </div>
                     <a href="/contact" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="#" class="btn btn-primary mr-3">Sing up</a>
-                 <a href="#" class="btn btn-success">Login</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'app:logout' %}" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="{% url 'app:signup' %}" class="btn btn-primary mr-3">Sign up</a>
+                <a href="{% url 'app:login' %}" class="btn btn-success">Login</a>
+                {% endif %}
             </div>
         </nav>
     </div>
@@ -98,9 +102,9 @@
 
 <h5>₹{{ course.price }}</h5>
 
-<a href="{% url 'remove_from_cart' course.id %}" 
+<a href="{% url 'app:remove_from_cart' course.id %}" 
    class="text-danger font-weight-bold">
-   Remove
+    Remove
 </a>
 
 </div>

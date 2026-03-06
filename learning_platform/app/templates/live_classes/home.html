@@ -1,0 +1,173 @@
+<html lang="en">
+{% load static %}
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Classes</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid bg-dark">
+  <div class="row py-2 px-lg-5">
+    <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+      <div class="d-inline-flex align-items-center text-white">
+        <small><i class="fa fa-phone-alt mr-2"></i>+918962289226</small>
+        <small class="px-3">|</small>
+        <small><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</small>
+      </div>
+    </div>
+    <div class="col-lg-6 text-center text-lg-right">
+      <div class="d-inline-flex align-items-center">
+        <a class="text-white px-2" href="https://www.facebook.com/share/1DixpuRW4Z/"><i class="fab fa-facebook-f"></i></a>
+        <a class="text-white px-2" href="#"><i class="fab fa-twitter"></i></a>
+        <a class="text-white px-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a class="text-white px-2" href="https://www.instagram.com/satendrasatyaj/"><i class="fab fa-instagram"></i></a>
+        <a class="text-white pl-2" href="https://www.youtube.com/@sabkesirsatendrasir"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-0">
+  <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+    <a href="/" class="navbar-brand ml-lg-3 d-flex align-items-center">
+      <img src="{% static 'img/logo-.png' %}" alt="Logo" style="width:80px; height:auto; margin-right:10px;">
+      <h1 class="m-0 text-uppercase text-primary">Sabke Sir</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+      <div class="navbar-nav mx-auto py-0">
+        <a href="/" class="nav-item nav-link">Home</a>
+        <a href="{% url 'app:live_classes_home' %}" class="nav-item nav-link active">Live Classes</a>
+        <a href="/about" class="nav-item nav-link">About</a>
+        <a href="/course" class="nav-item nav-link">Courses</a>
+        <a href="/contact" class="nav-item nav-link">Contact</a>
+      </div>
+      {% if user.is_authenticated %}
+      <a href="{% url 'app:logout' %}" class="btn btn-danger">Logout</a>
+      {% else %}
+      <a href="{% url 'app:signup' %}" class="btn btn-primary mr-3">Sign up</a>
+      <a href="{% url 'app:login' %}" class="btn btn-success">Login</a>
+      {% endif %}
+    </div>
+  </nav>
+</div>
+<div class="jumbotron jumbotron-fluid page-header position-relative overlay-bottom" style="margin-bottom: 60px;">
+  <div class="container text-center py-5">
+    <h1 class="text-white display-4">Live Classes</h1>
+    <div class="d-inline-flex text-white">
+      <p class="m-0 text-uppercase"><a class="text-white" href="/">Home</a></p>
+      <i class="fa fa-angle-double-right pt-1 px-3"></i>
+      <p class="m-0 text-uppercase">Live</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="mb-4">
+    <h4 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Live Now</h4>
+  </div>
+  {% if live_now %}
+  <div class="card shadow-sm mb-5">
+    <div class="card-body d-flex justify-content-between align-items-center flex-wrap">
+      <div class="mb-3 mb-md-0">
+        <span class="badge badge-danger mr-2">LIVE</span>
+        <h4 class="mb-1">{{ live_now.title }}</h4>
+        <p class="mb-0 text-muted">By {{ live_now.instructor }} · {{ live_now.subject }}</p>
+      </div>
+      <div>
+        <a href="{{ live_now.youtube_live_watch_url }}" target="_blank" class="btn btn-danger mr-2">
+          <i class="fab fa-youtube mr-1"></i> Watch on YouTube
+        </a>
+        <a href="{% url 'app:live_class_detail' live_now.pk %}" class="btn btn-outline-danger">
+          Watch on Website
+        </a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-secondary d-flex align-items-center" role="alert">
+    <i class="fa fa-video mr-2"></i> No live class right now. See schedule below.
+  </div>
+  {% endif %}
+  <div class="mb-3">
+    <h4 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Upcoming Classes</h4>
+  </div>
+  <div class="row">
+    {% for c in upcoming_classes %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ c.title }}</h5>
+          <p class="card-text text-muted mb-1">{{ c.instructor }} · {{ c.subject }}</p>
+          <p class="card-text"><i class="fa fa-calendar mr-1"></i> {{ c.scheduled_at|date:"M d, Y h:i A" }}</p>
+          <a href="{% url 'app:live_class_detail' c.pk %}" class="btn btn-outline-primary btn-sm">Details</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12"><p class="text-muted">No upcoming classes.</p></div>
+    {% endfor %}
+  </div>
+  <div class="mb-3 mt-4">
+    <h4 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Recorded Replays</h4>
+  </div>
+  <div class="row">
+    {% for r in replays %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="https://img.youtube.com/vi/{{ r.youtube_video_id }}/mqdefault.jpg" alt="Replay">
+        <div class="card-body">
+          <h6 class="card-title mb-1">{{ r.live_class.title }}</h6>
+          <p class="text-muted mb-3">{{ r.views }} views</p>
+          <a href="https://www.youtube.com/watch?v={{ r.youtube_video_id }}" target="_blank" class="btn btn-outline-danger btn-sm w-100">
+            <i class="fab fa-youtube mr-1"></i> Watch Replay
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12"><p class="text-muted">No recordings yet.</p></div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container-fluid position-relative bg-dark text-white-50 py-5" style="margin-top: 60px;">
+  <div class="container mt-5 pt-5">
+    <div class="row">
+      <div class="col-md-6 mb-5">
+        <a href="/" class="navbar-brand">
+          <h1 class="mt-n2 text-uppercase text-white">Edukate</h1>
+        </a>
+        <p class="m-0">Accusam nonumy clita sed rebum kasd eirmod elitr.</p>
+      </div>
+      <div class="col-md-6 mb-5">
+        <h3 class="text-white mb-4">Newsletter</h3>
+        <div class="w-100">
+          <div class="input-group">
+            <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+            <div class="input-group-append">
+              <button class="btn btn-primary px-4">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid bg-dark text-white-50 border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+        <p class="m-0">Copyright</p>
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <p class="m-0">Designed by HTML Codex</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
