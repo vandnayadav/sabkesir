@@ -22,6 +22,9 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+
+    
 </head>
 
 <body>
@@ -42,9 +45,6 @@
                     </a>
                     <a class="text-white px-2" href="">
                         <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a class="text-white px-2" href="https://www.instagram.com/satendrasatyaj/">
                         <i class="fab fa-instagram"></i>
@@ -118,7 +118,10 @@
             <div class="row">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{% static 'img/about.jpeg' %}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100"
+     src="{% static 'img/about.jpeg' %}"
+     style="object-fit: cover;"
+     alt="About Image">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -126,7 +129,7 @@
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
                         <h1 class="display-4">First Choice For Online Education Anywhere</h1>
                     </div>
-                    <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
+                    <p>We provide a trusted online coaching platform designed to make learning simple, effective, and accessible for every student. Our expert instructors deliver well-structured live classes along with recorded sessions, so learners can revise anytime at their own pace. With focused guidance, clear concepts, and continuous support, we help students build strong fundamentals and confidence. Our platform connects quality education with smart technology, ensuring a smooth learning experience. Whether it is exam preparation or concept clarity, we are committed to helping students achieve their academic goals with consistency and dedication.</p>
                     <div class="row pt-3 mx-0">
                         <div class="col-3 px-0">
                             <div class="bg-success text-center p-4">
@@ -161,22 +164,22 @@
 
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-image" style="margin: 10px 0;">
-        <div class="container">
+    <div class="container-fluid py-5">
+        <div class="container py-5">
             <div class="row">
-                <div class="col-lg-7 my-5 pt-5 pb-lg-5">
+                <div class="col-lg-7 mb-5 mb-lg-0">
                     <div class="section-title position-relative mb-4">
                         <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
                         <h1 class="display-4">Why You Should Start Learning with Us?</h1>
                     </div>
-                    <p class="mb-4 pb-2">Aliquyam accusam clita nonumy ipsum sit sea clita ipsum clita, ipsum dolores amet voluptua duo dolores et sit ipsum rebum, sadipscing et erat eirmod diam kasd labore clita est. Diam sanctus gubergren sit rebum clita amet.</p>
+                    <p class="mb-4 pb-2">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
                     <div class="d-flex mb-3">
                         <div class="btn-icon bg-primary mr-4">
                             <i class="fa fa-2x fa-graduation-cap text-white"></i>
                         </div>
                         <div class="mt-n1">
                             <h4>Skilled Instructors</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <p>Our experienced teachers explain Chemistry and Hindi in a simple and easy way, ensuring better understanding and concept clarity.</p>
                         </div>
                     </div>
                     <div class="d-flex mb-3">
@@ -184,8 +187,8 @@
                             <i class="fa fa-2x fa-certificate text-white"></i>
                         </div>
                         <div class="mt-n1">
-                            <h4>International Certificate</h4>
-                            <p>Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <h4>Course Completion Certificate</h4>
+                            <p>Students receive a course completion certificate after finishing the Chemistry or Hindi course, recognizing their learning and effort.</p>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -194,13 +197,16 @@
                         </div>
                         <div class="mt-n1">
                             <h4>Online Classes</h4>
-                            <p class="m-0">Labore rebum duo est Sit dolore eos sit tempor eos stet, vero vero clita magna kasd no nonumy et eos dolor magna ipsum.</p>
+                            <p class="m-0">e offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="{% static 'img/feature.jpeg' %}" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100"
+     src="{% static 'img/feature.jpeg' %}"
+     style="object-fit: cover;"
+     alt="About Image">
                     </div>
                 </div>
             </div>
@@ -208,364 +214,186 @@
     </div>
     <!-- Feature Start -->
 
-
-    <!-- Courses Start -->
-    <div class="container-fluid px-0 py-5">
-        <div class="row mx-0 justify-content-center pt-5">
-            <div class="col-lg-6">
-                <div class="section-title text-center position-relative mb-4">
-                    <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Our Courses</h6>
-                    <h1 class="display-4">Checkout New Releases Of Our Courses</h1>
-                </div>
-            </div>
-        </div>
-        <div class="owl-carousel courses-carousel">
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="img/courses-1.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="img/courses-2.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="img/courses-3.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="img/courses-4.jpg" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{% static 'img/courses-5.jpg' %}" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="courses-item position-relative">
-                <img class="img-fluid" src="{% static 'img/courses-6.jpg' %}" alt="">
-                <div class="courses-text">
-                    <h4 class="text-center text-white px-3">Web design & development courses for beginners</h4>
-                    <div class="border-top w-100 mt-3">
-                        <div class="d-flex justify-content-between p-4">
-                            <span class="text-white"><i class="fa fa-user mr-2"></i>Jhon Doe</span>
-                            <span class="text-white"><i class="fa fa-star mr-2"></i>4.5 <small>(250)</small></span>
-                        </div>
-                    </div>
-                    <div class="w-100 bg-white text-center p-4" >
-                        <a class="btn btn-primary" href="detail.html">Course Detail</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center bg-image mx-0 mb-5">
-            <div class="col-lg-6 py-5">
-                <div class="bg-white p-5 my-5">
-                    <h1 class="text-center mb-4">30% Off For New Students</h1>
-                    <form>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email" style="padding: 30px 20px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <select class="custom-select bg-light border-0 px-3" style="height: 60px;">
-                                        <option selected>Select A courses</option>
-                                        <option value="1">chemistry</option>
-                                        <option value="2">Hindi</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <button class="btn btn-primary btn-block" type="submit" style="height: 60px;">Sign Up Now</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Courses End -->
-
+   
 
     <!-- Team Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
+    <div class="container-fluid py-2">
+        <div class="container py-2">
             <div class="section-title text-center position-relative mb-5">
-                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Album</h6>
-                <h1 class="display-4">Our best previous results</h1>
+                <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2"></h6>
+                <h1 class="display-4">Our Best Previous Results</h1>
             </div>
             <div class="owl-carousel team-carousel position-relative" style="padding: 0 30px;">
                 <div class="team-item">
                     <img class="img-fluid w-100" src="{% static 'img/album1.jpeg' %}" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="team-item">
                     <img class="img-fluid w-100" src="{% static 'img/album6.jpeg' %}" alt="">
                     <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
                 </div>
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{% static 'img/album3.jpeg' %}" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-item">
-                    <img class="img-fluid w-100" src="{% static 'img/album4.jpeg' %}" alt="">
-                    <div class="bg-light text-center p-4">
-                        <h5 class="mb-3">Instructor Name</h5>
-                        <p class="mb-2">Web Design & Development</p>
-                        <div class="d-flex justify-content-center">
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-instagram"></i></a>
-                            <a class="mx-1 p-1" href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
     <!-- Team End -->
 
 
-   
+    
 
+   <!-- Contact Start -->
+   <body>
 
-    <!-- Contact Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-primary mr-4">
-                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Our Location</h4>
-                                <p class="m-0">Rajeev Nagar, Durga Nagar, Vidisha, Madhya Pradesh 464001, India</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-5">
-                            <div class="btn-icon bg-secondary mr-4">
-                                <i class="fa fa-2x fa-phone-alt text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Call Us</h4>
-                                <p class="m-0">+91 89622 89226</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="btn-icon bg-warning mr-4">
-                                <i class="fa fa-2x fa-envelope text-white"></i>
-                            </div>
-                            <div class="mt-n1">
-                                <h4>Email Us</h4>
-                                <p class="m-0">sabkesirsatendrasir@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Need Help?</h6>
-                        <h1 class="display-4">Send Us A Message</h1>
-                    </div>
-                    <div class="contact-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-6 form-group">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Your Name" required="required">
-                                </div>
-                                <div class="col-6 form-group">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Your Email" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0" placeholder="Subject" required="required">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5" placeholder="Message" required="required"></textarea>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
+<section class="contact-section">
+    <div class="contact-container">
+
+<!-- Left Info Box -->
+        <div class="contact-info">
+            <div class="info-box">
+                <div class="icon blue"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                    <h4>Our Location</h4>
+                    <p>Ramji Mithai, Rajeev Nagar,<br>Vidisha, India</p>
                 </div>
             </div>
+
+            <div class="info-box">
+                <div class="icon red"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                    <h4>Call Us</h4>
+                    <p>+91 8962289226</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="icon yellow"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                    <h4>Email Us</h4>
+                    <p>sabkesirsatendrasir@gmail.com</p>
+                </div>
+            </div>
+
+           <!-- Map Button Start -->
+<div class="container text-center my-5">
+    <h5 class="text-primary mb-3"></h5>
+    
+    
+    <a 
+        href="https://www.google.com/maps?q=Rajeev+Nagar+Vidisha+Madhya+Pradesh"
+        target="_blank"
+        class="btn btn-primary btn-lg px-5">
+        📍 View on Google Maps
+    </a>
+</div>
+<!-- Map Button End -->
         </div>
+
+        <!-- Right Form Box -->
+        <div class="contact-form">
+            <span class="help-text">NEED HELP?</span>
+            <h2>Send Us A Message</h2>
+            <p class="desc">
+                Have questions or need assistance? Send us a message and we’ll get back to you as soon as possible.
+            </p>
+
+            <form>
+                <div class="input-group">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-tag"></i>
+                    <input type="text" placeholder="Subject">
+                </div>
+
+                <div class="input-group textarea">
+                    <i class="fa-regular fa-message"></i>
+                    <textarea placeholder="Message"></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
     </div>
+</section>
+
+</body>
+</html>
     <!-- Contact End -->
 
 
     <!-- Footer Start -->
-    <div class="container-fluid position-relative bg-dark text-white-50 py-3" style="margin-top: 30px;">
-    <div class="container mt-2 pt-2">
-            <div class="row">
-                <div class="col-md-6 mb-5">
-                    <a href="index.html" class="navbar-brand ml-lg-3 d-flex align-items-center">
-                    
-                    <!-- Logo image -->
-                    <img src="{% static 'img/logo-.png' %}" 
+   <div class="container-fluid position-relative bg-dark text-white-50 py-3" style="margin-top: 30px;">
+    <div class="container-fluid px-5 mt-3 pt-3">
+        <div class="row">
+
+            <!-- Logo + About -->
+            <div class="col-md-4 mb-5 pr-2">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
+                    <img src="{% static 'img/footer-logo.jpeg' %}" 
                         alt="Logo" 
-                        style="width:80px; height:auto; margin-right:5px;">
-                    <h1 class="m-0 text-uppercase text-primary">
-                        <i class=""></i>Sabke Sir</h1>
+                        style="width:80px; height:auto; margin-right:8px;">
+                    <h1 class="m-0 text-uppercase text-primary">Sabke Sir</h1>
                 </a>
-                    <p class="m-0">Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures.Students can purchase courses here and learn from expert teachers.</p>
-                </div>
-                <div class="col-md-6 mb-5">
-                    <h3 class="text-white mb-4">Newsletter</h3>
-                    <div class="w-100">
-                        <div class="input-group">
-                            <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary px-4">Sign Up</button>
-                            </div>
-                        </div>
-                    </div>
+                <p class="mt-1">
+                    Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures. Students can purchase courses here and learn from expert teachers.
+                </p>
+            </div>
+
+
+            <!-- Get In Touch -->
+            <div class="col-md-3 mb-2">
+                <h3 class="text-white mb-4">Get In Touch</h3>
+                <p><i class="fa fa-map-marker-alt mr-2"></i> Rajeev Nagar, Vidisha, Madhya Pradesh 464001, India</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+918962289226</p>
+                <p><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</p>
+            </div>
+
+            <!-- Our Courses -->
+            <div class="col-md-2 mb-3">
+                <h3 class="text-white mb-4">Our Courses</h3>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#">Web Design</a>
+                    <a class="text-white-50 mb-2" href="#">Apps Design</a>
+                    <a class="text-white-50 mb-2" href="#">Marketing</a>
+                    <a class="text-white-50 mb-2" href="#">Research</a>
+                    <a class="text-white-50" href="#">SEO</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Get In Touch</h3>
-                    <p><i class="fa fa-map-marker-alt mr-2"> Rajeev Nagar, Vidisha, Madhya Pradesh 464001, India</i></p>
-                    <p><i class="fa fa-phone-alt mr-2"></i>+918962289226</p>
-                    <p><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</p>
-                    <div class="d-flex justify-content-start mt-4">
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-twitter"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-facebook-f"></i></a>
-                        <a class="text-white mr-4" href="#"><i class="fab fa-2x fa-linkedin-in"></i></a>
-                        <a class="text-white" href="#"><i class="fab fa-2x fa-instagram"></i></a>
-                    </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2 mb-3">
+                <h3 class="text-white mb-4">Quick Links</h3>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="#">Privacy Policy</a>
+                    <a class="text-white-50 mb-2" href="#">Terms & Condition</a>
+                    <a class="text-white-50 mb-2" href="#">Regular FAQs</a>
+                    <a class="text-white-50 mb-2" href="#">Help & Support</a>
+                    <a class="text-white-50" href="#">Contact</a>
                 </div>
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Our Courses</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Web Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Apps Design</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Marketing</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Research</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>SEO</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <h3 class="text-white mb-4">Quick Links</h3>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Privacy Policy</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Terms & Condition</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Regular FAQs</a>
-                        <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Help & Support</a>
-                        <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
-                    </div>
-                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-dark text-white-50 border-top py-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                &copy; 2026 Sabke Sir. All Rights Reserved.
             </div>
         </div>
     </div>
-   <div class="container-fluid bg-dark text-white-50 border-top py-2" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-             <p class="m-0 text-center">
-                    &copy; <a class="text-white" href="#">2026 Sabke sir. All Rights Reserved.</a>
-                       </p>
-                   </div>
-            </div>
-        </div>
-    </div>
+</div>
+
     <!-- Footer End -->
 
 
