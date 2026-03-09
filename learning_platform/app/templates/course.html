@@ -88,8 +88,16 @@
                     </div>
                     <a href="/contact" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="#" class="btn btn-primary mr-3">Sing up</a>
-                 <a href="#" class="btn btn-success">Login</a>
+              {% if user.is_authenticated %}
+
+<a href="{% url 'app:logout' %}" class="btn btn-danger">Logout</a>
+
+{% else %}
+
+<a href="{% url 'app:signup' %}" class="btn btn-primary mr-3">Sign up</a>
+<a href="{% url 'app:login' %}" class="btn btn-success">Login</a>
+
+{% endif %}
             </div>
         </nav>
     </div>
@@ -123,7 +131,7 @@
 <!-- IMAGE -->
 <div class="course-img-wrapper">
 
-<a href="{% url 'app:add_to_cart' course.id %}"></a>
+< href="{% url 'app:add_to_cart' course.id %}">
 <img src="{{ course.image.url }}" class="course-img">
 </a>
 </div>
@@ -145,10 +153,19 @@ Instructor: Sabke Sir
 ₹ {{ course.price }}
 </div>
 
+{% if user.is_authenticated %}
 
 <a href="{% url 'app:add_to_cart' course.id %}" class="course-btn">
 View Course Details
 </a>
+
+{% else %}
+
+<a href="{% url 'app:login' %}?next={% url 'app:add_to_cart' course.id %}" class="course-btn">
+Login to View Course
+</a>
+
+{% endif %}
 
 </div>
 
@@ -164,10 +181,19 @@ View Course Details
 <li>✔ Lifetime Access</li>
 <li>✔ Certificate Included</li>
 </ul>
+{% if user.is_authenticated %}
 
 <a href="{% url 'app:add_to_cart' course.id %}" class="add-cart">
 Add to cart
 </a>
+
+{% else %}
+
+<a href="{% url 'app:login' %}?next={% url 'app:add_to_cart' course.id %}" class="add-cart">
+Login to Add Cart
+</a>
+
+{% endif %}
 
 </div>
 

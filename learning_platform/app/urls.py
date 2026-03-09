@@ -11,7 +11,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
 
     # Cart
-    path('add_to_cart/<int:course_id>/', views.add_to_cart, name='add_to_cart'),
+    path('add-to-cart/<int:course_id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.cart, name='cart'),
     path('remove-from-cart/<int:id>/', views.remove_from_cart, name='remove_from_cart'),
 
