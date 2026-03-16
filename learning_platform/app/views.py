@@ -16,6 +16,10 @@ from django.http import JsonResponse
 from .models import LiveClass, RecordedReplay
 from django.contrib.auth.decorators import login_required
 from django.utils.encoding import force_str
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+
 
 
 
@@ -23,8 +27,32 @@ from django.utils.encoding import force_str
 def index(request):
     return render(request, "index.html")
 
-
 def about(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        full_message = f"""
+        Name: {name}
+        Email: {email}
+
+        Message:
+        {message}
+        """
+
+        send_mail(
+            subject,
+            full_message,
+            settings.EMAIL_HOST_USER,
+            ['projectclient26@gmail.com'],
+        )
+
+        messages.success(request, "Message sent successfully")
+
     return render(request, "about.html")
 
 
