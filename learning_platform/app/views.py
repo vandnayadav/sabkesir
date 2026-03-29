@@ -19,6 +19,10 @@ from django.utils.encoding import force_str
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
+from django.conf import settings
+import ssl
+import certifi
+import re
 
 
 
@@ -55,10 +59,45 @@ def about(request):
 
     return render(request, "about.html")
 
-
 def contact(request):
-    return render(request, "contact.html")
+    if request.method == "POST":
 
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        full_message = f"""
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+        """
+
+        # SSL Fix for Python 3.14
+        import ssl
+        import smtplib
+        from email.mime.text import MIMEText
+
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+
+        msg = MIMEText(full_message)
+        msg['Subject'] = subject or "Contact Form Query"
+        msg['From'] = settings.EMAIL_HOST_USER
+        msg['To'] = 'projectclient26@gmail.com'
+
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.ehlo()
+            server.starttls(context=context)
+            server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+            server.sendmail(settings.EMAIL_HOST_USER, ['projectclient26@gmail.com'], msg.as_string())
+
+        messages.success(request, "Message sent successfully!")
+
+    return render(request, "contact.html")
 
 
 
@@ -124,7 +163,8 @@ def remove_from_cart(request, id):
     return redirect('app:cart')
 
 
-# ---------- SIGNUP ----------
+#import re  # ← file ke top mein add karo
+
 def signup_view(request):
     if request.method == "POST":
         name = request.POST.get('name', '').strip()
@@ -136,6 +176,16 @@ def signup_view(request):
         # Validations
         if not name or not email or not password:
             messages.error(request, "All fields are required")
+            return redirect('app:signup')
+
+        # ✅ Name validation — sirf letters aur spaces
+        if not re.match(r'^[A-Za-z\s]+$', name):
+            messages.error(request, "Name mein sirf letters allowed hain, numbers nahi!")
+            return redirect('app:signup')
+
+        # ✅ Password length — kam se kam 8 characters
+        if len(password) < 8:
+            messages.error(request, "Password kam se kam 8 characters ka hona chahiye!")
             return redirect('app:signup')
 
         if password != confirm_password:
@@ -200,12 +250,25 @@ def forgot_password(request):
             domain = request.get_host()
             link = f"http://{domain}/reset/{uid}/{token}/"
 
-            send_mail(
-                "Password Reset",
-                f"Click this link to reset password: {link}",
-                "projectclient26@gmail.com",
-                [email],
-            )
+            # SSL Fix for Python 3.14 on Windows
+            import ssl
+            import smtplib
+            from email.mime.text import MIMEText
+
+            context = ssl.create_default_context()
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
+
+            msg = MIMEText(f"Click this link to reset password: {link}")
+            msg['Subject'] = "Password Reset"
+            msg['From'] = settings.EMAIL_HOST_USER
+            msg['To'] = email
+
+            with smtplib.SMTP('smtp.gmail.com', 587) as server:
+                server.ehlo()
+                server.starttls(context=context)
+                server.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+                server.sendmail(settings.EMAIL_HOST_USER, [email], msg.as_string())
 
             messages.success(request, "Reset link sent to email")
 
@@ -213,7 +276,6 @@ def forgot_password(request):
             messages.error(request, "Email not found")
 
     return render(request, "forgot_password.html")
-
 
 # ---------- RESET PASSWORD ----------
 def reset_password(request, uidb64, token):

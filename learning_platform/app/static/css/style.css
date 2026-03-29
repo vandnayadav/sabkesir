@@ -10697,3 +10697,14 @@ h6,
     transform: translateX(-50%);
   }
 }
+/* ===== NAVBAR SCROLL FIX - No more jumping ===== */
+.navbar {
+    min-height: 72px !important;
+    transition: box-shadow 0.3s ease, background 0.3s ease !important;
+}
+
+.navbar.scrolled {
+    min-height: 72px !important;
+    height: 72px !important;
+    box-shadow: 0 4px 32px rgba(13,27,62,0.12) !important;
+}

@@ -2,354 +2,823 @@
 {% load static %}
 <head>
     <meta charset="utf-8">
-    <title>Sabke sir - Online Education Website </title>
+    <title>Sabke Sir - About Us</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-         <link href="{% static 'css/about.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link href="{% static 'css/about.css' %}" rel="stylesheet">
 
+    <style>
+        /* ===== MATCH INDEX.HTML EXACT VARIABLES ===== */
+        :root {
+            --navy: #0F1F45;
+            --navy-dark: #08142E;
+            --navy-light: #1E2F5C;
+            --blue: #2563EB;
+            --blue-light: #3B82F6;
+            --sky: #EFF6FF;
+            --accent: #F59E0B;
+            --accent-light: #FDE68A;
+            --green: #10B981;
+            --white: #FFFFFF;
+            --text: #1E293B;
+            --muted: #64748B;
+            --border: #E2E8F0;
+            --bg: #F8FAFC;
+        }
 
-    
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ===== CURSOR (same as index) ===== */
+        .cursor-dot {
+            width: 9px; height: 9px; background: var(--accent);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; transform: translate(-50%,-50%);
+            transition: transform 0.12s, background 0.2s;
+            box-shadow: 0 0 10px rgba(245,158,11,0.7);
+        }
+        .cursor-dot.hover { transform: translate(-50%,-50%) scale(2.4); background: white; box-shadow: 0 0 16px rgba(255,255,255,0.6); }
+
+        /* ===== TOPBAR (exact match index) ===== */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 9px 0;
+            position: relative; overflow: hidden;
+        }
+        .topbar::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245,158,11,0.4), transparent);
+        }
+        .topbar-inner {
+            max-width: 1200px; margin: auto; padding: 0 28px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .topbar-contact { display: flex; gap: 28px; }
+        .topbar-contact a { color: #94A3B8; font-size: 12.5px; text-decoration: none; display: flex; align-items: center; gap: 7px; transition: color 0.25s; }
+        .topbar-contact a:hover { color: var(--accent-light); }
+        .topbar-contact i { color: var(--accent); font-size: 11px; }
+        .topbar-social a { color: #64748B; margin-left: 16px; font-size: 13px; transition: all 0.25s; display: inline-block; }
+        .topbar-social a:hover { color: var(--accent); transform: translateY(-2px); }
+
+        /* ===== NAVBAR (exact match index - white bg) ===== */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 76px; position: sticky; top: 0; z-index: 999;
+            box-shadow: 0 4px 30px rgba(15,31,69,0.08);
+            transition: box-shadow 0.3s;
+        }
+        .navbar.scrolled { box-shadow: 0 8px 40px rgba(15,31,69,0.14); }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-brand img { width: 48px; height: auto; }
+        .nav-brand-text .name { font-family: 'Sora', sans-serif; font-size: 21px; font-weight: 800; color: var(--navy); line-height: 1; }
+        .nav-brand-text .tagline { font-size: 10.5px; color: var(--muted); font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2px; list-style: none; }
+        .nav-links a {
+            color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600;
+            padding: 7px 16px; border-radius: 8px; transition: all 0.2s; position: relative;
+        }
+        .nav-links a::after { content:'';position:absolute;bottom:3px;left:50%;right:50%;height:2px;background:var(--blue);border-radius:2px;transition:all 0.25s; }
+        .nav-links a:hover::after, .nav-links a.active::after { left:16px;right:16px; }
+        .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--sky); }
+        .nav-actions { display: flex; gap: 10px; align-items: center; }
+        .btn-nav-outline { padding: 8px 20px; border: 2px solid var(--navy); color: var(--navy); background: transparent; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.22s; }
+        .btn-nav-outline:hover { background: var(--navy); color: white; transform: translateY(-1px); }
+        .btn-nav-fill { padding: 8px 22px; background: var(--blue); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.22s; box-shadow: 0 4px 16px rgba(37,99,235,0.35); }
+        .btn-nav-fill:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.45); }
+
+        /* ===== MOBILE HAMBURGER ===== */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            background: var(--sky);
+            border: 1.5px solid var(--border);
+            transition: all 0.2s;
+        }
+        .nav-hamburger span {
+            width: 22px; height: 2.5px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: block;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== MOBILE NAV DRAWER ===== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(8,20,46,0.7);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+        .mobile-nav.open { display: block; }
+        .mobile-nav-panel {
+            background: white;
+            width: 280px;
+            height: 100%;
+            padding: 28px 24px;
+            display: flex; flex-direction: column; gap: 8px;
+            box-shadow: 8px 0 40px rgba(15,31,69,0.2);
+            animation: slideInLeft 0.3s ease;
+        }
+        @keyframes slideInLeft { from{transform:translateX(-100%);} to{transform:translateX(0);} }
+        .mobile-nav-close {
+            align-self: flex-end;
+            background: var(--sky); border: none;
+            width: 36px; height: 36px; border-radius: 50%;
+            font-size: 18px; color: var(--navy);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .mobile-nav-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .mobile-nav-brand img { width: 40px; }
+        .mobile-nav-brand .name { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); }
+        .mobile-nav-brand .tagline { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        .mobile-nav a {
+            display: block;
+            padding: 12px 16px;
+            color: var(--text); text-decoration: none;
+            font-size: 15px; font-weight: 600;
+            border-radius: 10px;
+            transition: all 0.2s;
+            border: 1.5px solid transparent;
+        }
+        .mobile-nav a:hover, .mobile-nav a.active { background: var(--sky); color: var(--blue); border-color: rgba(37,99,235,0.15); }
+        .mobile-nav a i { margin-right: 10px; width: 16px; color: var(--blue); }
+        .mobile-nav-actions { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        .mobile-nav-actions a { flex: 1; text-align: center; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; }
+
+        /* ===== PAGE HERO BANNER (dark navy - like index hero) ===== */
+        .page-hero {
+            background: linear-gradient(140deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+            padding: 72px 60px;
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; min-height: 240px;
+        }
+        .page-hero-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 60px 60px; animation: gridMove 25s linear infinite;
+        }
+        @keyframes gridMove { 0%{background-position:0 0;}100%{background-position:60px 60px;} }
+        .page-hero::before { content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(37,99,235,0.2),transparent 70%);border-radius:50%;pointer-events:none; }
+        .page-hero::after { content:'';position:absolute;bottom:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(245,158,11,0.1),transparent 70%);border-radius:50%;pointer-events:none; }
+        .ph-shape1 { position:absolute;top:40px;right:160px;width:80px;height:80px;border:2px solid rgba(255,255,255,0.08);border-radius:50%;animation:spinS 22s linear infinite; }
+        .ph-shape2 { position:absolute;bottom:40px;right:280px;width:36px;height:36px;background:rgba(245,158,11,0.12);border-radius:7px;animation:spinS 16s linear infinite reverse; }
+        @keyframes spinS{0%{transform:rotate(0);}100%{transform:rotate(360deg);}}
+        .page-hero-content { position: relative; z-index: 1; animation: fadeUp 0.7s ease both; }
+        .page-hero-tag {
+            display: inline-block; background: rgba(245,158,11,0.12); color: #FDE68A;
+            font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px;
+            padding: 5px 18px; border-radius: 50px; margin-bottom: 18px;
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+        .page-hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(34px, 4vw, 52px); font-weight: 900; color: white; line-height: 1.1; }
+        .page-hero h1 span { color: var(--accent); }
+        .page-hero-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 18px; }
+        .page-hero-breadcrumb a { color: #64748B; text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.2s; }
+        .page-hero-breadcrumb a:hover { color: var(--accent); }
+        .page-hero-breadcrumb .sep { color: #334155; font-size: 13px; }
+        .page-hero-breadcrumb .current { color: var(--accent); font-size: 13px; font-weight: 700; }
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+        @keyframes fadeLeft{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:translateX(0);}}
+        @keyframes fadeRight{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:translateX(0);}}
+
+        /* ===== SECTION BASE (white light - same as index) ===== */
+        .section { padding: 90px 0; }
+        .section-inner { max-width: 1100px; margin: auto; padding: 0 44px; }
+        .section-bg { background: var(--bg); }
+        .sec-tag {
+            display: inline-block; background: var(--sky); color: var(--blue);
+            font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px;
+            padding: 5px 16px; border-radius: 50px; margin-bottom: 16px;
+            border: 1px solid rgba(37,99,235,0.2);
+        }
+        .sec-heading { font-family: 'Sora', sans-serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; color: var(--navy); line-height: 1.15; }
+        .sec-heading span { color: var(--blue); }
+        .sec-divider { width: 52px; height: 4px; background: linear-gradient(90deg, var(--blue), var(--accent)); border-radius: 2px; margin: 20px 0 24px; }
+
+        /* ===== ABOUT GRID ===== */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+        .about-img-wrap { position: relative; min-height: 480px; }
+        .about-img-wrap::before { content:'';position:absolute;top:-16px;left:-16px;right:16px;bottom:16px;border:2px solid rgba(37,99,235,0.12);border-radius:24px;z-index:0; }
+        .about-img-wrap img { width:100%;height:480px;object-fit:cover;border-radius:20px;display:block;position:relative;z-index:1;transition:transform 0.5s; }
+        .about-img-wrap:hover img { transform: scale(1.03); }
+        .about-badge {
+            position: absolute; bottom: 28px; right: -28px; z-index: 2;
+            background: var(--navy); color: white; padding: 20px 24px;
+            border-radius: 16px; text-align: center;
+            box-shadow: 0 12px 40px rgba(15,31,69,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .about-badge .big { font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 900; color: var(--accent); line-height: 1; }
+        .about-badge .sm { font-size: 11px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+        .about-text p { color: var(--muted); font-size: 15px; line-height: 1.95; margin-bottom: 16px; }
+
+        /* counter stat boxes */
+        .stats-row { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 28px; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 32px rgba(15,31,69,0.12); }
+        .stat-box { padding: 24px 14px; text-align: center; transition: transform 0.25s; cursor: default; }
+        .stat-box:hover { transform: translateY(-3px); }
+        .stat-box .num { font-family: 'Sora', sans-serif; font-size: 34px; font-weight: 900; color: white; line-height: 1; }
+        .stat-box .lbl { font-size: 10.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
+        .sb-green { background: #10B981; }
+        .sb-blue  { background: var(--blue); }
+        .sb-gray  { background: #64748B; }
+        .sb-amber { background: var(--accent); }
+
+        /* ===== HIGHLIGHT PILLS ===== */
+        .about-highlights { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+        .highlight-pill {
+            display: flex; align-items: center; gap: 8px;
+            background: white; border: 1.5px solid var(--border);
+            padding: 9px 18px; border-radius: 50px;
+            font-size: 13px; font-weight: 700; color: var(--navy);
+            transition: all 0.22s; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .highlight-pill:hover { border-color: rgba(37,99,235,0.35); background: var(--sky); color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.1); }
+        .highlight-pill i { color: var(--blue); }
+
+        /* ===== WHY CHOOSE / FEATURE ===== */
+        .why-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: center; }
+        .why-img { position: relative; border-radius: 20px; overflow: hidden; }
+        .why-img img { width: 100%; height: 480px; object-fit: cover; border-radius: 20px; transition: transform 0.5s; }
+        .why-img:hover img { transform: scale(1.04); }
+        .feature-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+        .feature-card {
+            display: flex; gap: 18px; align-items: flex-start;
+            background: white; border: 1.5px solid var(--border);
+            border-radius: 16px; padding: 22px; transition: all 0.28s; position: relative; overflow: hidden;
+        }
+        .feature-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--blue),var(--accent));transform:scaleY(0);transform-origin:bottom;transition:transform 0.28s; }
+        .feature-card:hover { border-color: rgba(37,99,235,0.25); box-shadow: 0 12px 32px rgba(37,99,235,0.1); transform: translateX(6px); }
+        .feature-card:hover::before { transform: scaleY(1); }
+        .feat-icon { width: 52px; height: 52px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; transition: transform 0.25s; }
+        .feature-card:hover .feat-icon { transform: scale(1.1) rotate(-6deg); }
+        .fi-blue  { background: var(--sky); color: var(--blue); border: 1px solid rgba(37,99,235,0.15); }
+        .fi-gray  { background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; }
+        .fi-amber { background: #FFFBEB; color: var(--accent); border: 1px solid #FDE68A; }
+        .feature-card h4 { font-size: 15.5px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
+        .feature-card p { color: var(--muted); font-size: 13.5px; line-height: 1.75; margin: 0; }
+
+        /* ===== SIR PROFILE CARD ===== */
+        .sir-card {
+            display: flex; gap: 52px; align-items: center;
+            background: white; border: 1.5px solid var(--border);
+            border-radius: 24px; padding: 48px;
+            box-shadow: 0 8px 40px rgba(15,31,69,0.08);
+            transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .sir-card::before { content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(37,99,235,0.06),transparent 70%);pointer-events:none; }
+        .sir-card:hover { border-color: rgba(37,99,235,0.2); box-shadow: 0 16px 56px rgba(37,99,235,0.12); }
+        .sir-img-wrap {
+            flex-shrink: 0; width: 180px; height: 180px; border-radius: 50%;
+            overflow: hidden; border: 3px solid var(--border);
+            box-shadow: 0 0 0 6px rgba(37,99,235,0.07), 0 12px 36px rgba(15,31,69,0.15);
+        }
+        .sir-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .sir-card:hover .sir-img-wrap img { transform: scale(1.07); }
+        .sir-card-content h2 { font-family: 'Sora', sans-serif; font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+        .sir-card-content .role { color: var(--blue); font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 16px; }
+        .sir-card-content p { color: var(--muted); font-size: 15px; line-height: 1.9; }
+        .sir-card-content p + p { margin-top: 12px; }
+
+        /* ===== PHOTO ALBUM (auto-scroll) ===== */
+        .album-section { background: var(--bg); padding: 90px 0; }
+        .album-inner { max-width: 1100px; margin: auto; padding: 0 44px; text-align: center; margin-bottom: 44px; }
+        .slider { overflow: hidden; position: relative; }
+        .slider::before, .slider::after { content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none; }
+        .slider::before { left:0; background: linear-gradient(90deg, var(--bg), transparent); }
+        .slider::after  { right:0; background: linear-gradient(-90deg, var(--bg), transparent); }
+        .slide-track { display: flex; gap: 16px; width: max-content; animation: slideLoop 30s linear infinite; }
+        .slide-track:hover { animation-play-state: paused; }
+        .slide-track img { width: 260px; height: 175px; object-fit: cover; border-radius: 14px; border: 1.5px solid var(--border); transition: transform 0.3s, box-shadow 0.3s; flex-shrink: 0; }
+        .slide-track img:hover { transform: scale(1.04); box-shadow: 0 10px 32px rgba(15,31,69,0.15); }
+        @keyframes slideLoop { 0%{transform:translateX(0);}100%{transform:translateX(-50%);} }
+
+        /* ===== FOOTER (exact match index - dark navy) ===== */
+        footer { background: var(--navy-dark); padding: 72px 0 0; position: relative; }
+        footer::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue),var(--accent),var(--blue),transparent); }
+        .footer-inner { max-width: 1200px; margin: auto; padding: 0 44px; display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr; gap: 52px; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; text-decoration: none; }
+        .footer-logo img { width: 46px; }
+        .footer-logo-text .nm { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; color: white; }
+        .footer-logo-text .tg { font-size: 10.5px; color: #475569; letter-spacing: 1.5px; text-transform: uppercase; }
+        .footer-about p { color: #475569; font-size: 14px; line-height: 1.9; }
+        .footer-col h4 { font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: white; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .footer-col p { color: #475569; font-size: 14px; line-height: 2.3; }
+        .footer-col p i { color: var(--accent); margin-right: 10px; width: 14px; }
+        .footer-links a { display: block; color: #475569; font-size: 14px; text-decoration: none; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); transition: all 0.22s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 8px; }
+        .footer-bottom { max-width: 1200px; margin: 52px auto 0; padding: 22px 44px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
+        .footer-bottom p { color: #475569; font-size: 13px; }
+        .footer-socials a { color: #475569; margin-left: 18px; font-size: 15px; transition: all 0.22s; display: inline-block; }
+        .footer-socials a:hover { color: var(--accent); transform: translateY(-3px); }
+
+        /* Back top */
+        .back-top { position: fixed; bottom: 30px; right: 30px; width: 46px; height: 46px; background: linear-gradient(135deg, var(--blue), var(--navy)); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; box-shadow: 0 8px 24px rgba(37,99,235,0.4); transition: all 0.25s; z-index: 999; }
+        .back-top:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(37,99,235,0.55); }
+
+        /* Scroll reveal */
+        .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+        .reveal.visible{opacity:1;transform:translateY(0);}
+        .reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+        .reveal-left.visible{opacity:1;transform:translateX(0);}
+        .reveal-right{opacity:0;transform:translateX(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+        .reveal-right.visible{opacity:1;transform:translateX(0);}
+
+        /* Shimmer on stats bar top */
+        .stats-shimmer { height: 3px; background: linear-gradient(90deg, var(--blue), var(--accent), var(--green), var(--blue)); background-size: 200% 100%; animation: shimmer 4s linear infinite; }
+        @keyframes shimmer{0%{background-position:0%;}100%{background-position:200%;}}
+
+        /* =========================================================
+           ===== RESPONSIVE MEDIA QUERIES (NEW - Added Below) =====
+           ========================================================= */
+
+        /* ---- Tablet: 768px - 960px ---- */
+        @media (max-width: 960px) {
+            /* Navbar */
+            .navbar { padding: 0 20px; }
+            .nav-links { display: none; }
+            .nav-actions { display: none; }
+            .nav-hamburger { display: flex; }
+
+            /* Topbar */
+            .topbar-social { display: none; }
+            .topbar-contact { gap: 14px; }
+            .topbar-contact a { font-size: 11px; }
+
+            /* Page Hero */
+            .page-hero { padding: 50px 24px; min-height: 180px; }
+            .ph-shape1, .ph-shape2 { display: none; }
+
+            /* Sections */
+            .section { padding: 60px 0; }
+            .section-inner { padding: 0 24px; }
+
+            /* About Grid → single column */
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+            .about-img-wrap { min-height: unset; }
+            .about-img-wrap::before { display: none; }
+            .about-img-wrap img { height: 300px; }
+            .about-badge { display: none; }
+
+            /* Stats row 2 columns */
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+
+            /* Why grid → single column, image second */
+            .why-grid { grid-template-columns: 1fr; gap: 36px; }
+            .why-img { order: 2; }
+            .why-grid > .reveal-left { order: 1; }
+            .why-img img { height: 260px; }
+
+            /* Sir card → column */
+            .sir-card { flex-direction: column !important; text-align: center; gap: 24px; padding: 32px 24px; }
+            .sir-img-wrap { width: 140px; height: 140px; }
+
+            /* Footer → 2 cols */
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; padding: 0 24px; }
+            .footer-bottom { padding: 18px 24px; flex-direction: column; gap: 12px; text-align: center; }
+            .footer-socials a { margin-left: 12px; }
+
+            /* Cursor hide on touch */
+            .cursor-dot { display: none; }
+
+            /* Album section */
+            .album-inner { padding: 0 20px; }
+            .album-section { padding: 60px 0; }
+        }
+
+        /* ---- Mobile: max 600px ---- */
+        @media (max-width: 600px) {
+            /* Topbar: hide on very small, show only phone */
+            .topbar-contact a:last-child { display: none; }
+            .topbar-contact { gap: 8px; }
+            .topbar-inner { padding: 0 16px; }
+
+            /* Navbar */
+            .navbar { padding: 0 16px; height: 64px; }
+            .nav-brand img { width: 38px; }
+            .nav-brand-text .name { font-size: 17px; }
+            .nav-brand-text .tagline { font-size: 9px; }
+
+            /* Page Hero */
+            .page-hero { padding: 40px 16px; min-height: 160px; }
+            .page-hero h1 { font-size: 28px; }
+            .page-hero-breadcrumb { gap: 8px; }
+
+            /* Section */
+            .section { padding: 48px 0; }
+            .section-inner { padding: 0 16px; }
+            .sec-heading { font-size: 24px; }
+
+            /* About image */
+            .about-img-wrap img { height: 240px; border-radius: 16px; }
+
+            /* Stats row → 2 col */
+            .stats-row { grid-template-columns: repeat(2, 1fr); border-radius: 12px; }
+            .stat-box { padding: 18px 10px; }
+            .stat-box .num { font-size: 26px; }
+            .stat-box .lbl { font-size: 9px; }
+
+            /* Highlights */
+            .about-highlights { gap: 8px; }
+            .highlight-pill { font-size: 12px; padding: 8px 14px; }
+
+            /* Feature cards */
+            .feature-card { padding: 16px; gap: 14px; }
+            .feat-icon { width: 44px; height: 44px; font-size: 17px; }
+            .feature-card h4 { font-size: 14px; }
+            .feature-card p { font-size: 13px; }
+
+            /* Sir card */
+            .sir-card { padding: 24px 16px; gap: 20px; border-radius: 18px; }
+            .sir-img-wrap { width: 120px; height: 120px; }
+            .sir-card-content h2 { font-size: 20px; }
+            .sir-card-content .role { font-size: 11px; }
+            .sir-card-content p { font-size: 13.5px; }
+
+            /* Slider images */
+            .slide-track img { width: 200px; height: 135px; }
+            .slider::before, .slider::after { width: 60px; }
+
+            /* Album section */
+            .album-section { padding: 48px 0; }
+            .album-inner { padding: 0 16px; margin-bottom: 28px; }
+
+            /* Footer */
+            .footer-inner { grid-template-columns: 1fr; gap: 28px; padding: 0 16px; }
+            footer { padding: 48px 0 0; }
+            .footer-bottom { padding: 16px; }
+            .footer-col h4 { font-size: 10.5px; }
+
+            /* Back to top */
+            .back-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 14px; }
+
+            /* Why image */
+            .why-img img { height: 220px; border-radius: 14px; }
+        }
+
+        /* ---- Very small: max 380px ---- */
+        @media (max-width: 380px) {
+            .topbar { display: none; }
+            .page-hero h1 { font-size: 24px; }
+            .sec-heading { font-size: 21px; }
+            .about-img-wrap img { height: 200px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .stat-box .num { font-size: 22px; }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark">
-        <div class="row py-2 px-lg-5">
-            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+918962289226</small>
-                    <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</small>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-2" href="https://www.facebook.com/share/1DixpuRW4Z/">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-2" href="https://www.instagram.com/satendrasatyaj/">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-white pl-2" href="https://www.youtube.com/@sabkesirsatendrasir">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
+
+<!-- Cursor dot -->
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Topbar -->
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="topbar-contact">
+            <a href="tel:+918962289226"><i class="fa fa-phone"></i>+918962289226</a>
+            <a href="mailto:sabkesirsatendrasir@gmail.com"><i class="fa fa-envelope"></i>sabkesirsatendrasir@gmail.com</a>
+        </div>
+        <div class="topbar-social">
+            <a href="https://www.facebook.com/share/1DixpuRW4Z/"><i class="fab fa-facebook-f"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/satendrasatyaj/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@sabkesirsatendrasir"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
-    <!-- Topbar End -->
+</div>
 
-
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-           {% load static %}
-                <a href="index.html" class="navbar-brand ml-lg-3 d-flex align-items-center">
-                    
-                    <!-- Logo image -->
-                    <img src="{% static 'img/logo-.png' %}" 
-                        alt="Logo" 
-                        style="width:80px; height:auto; margin-right:10px;">
-                    <h1 class="m-0 text-uppercase text-primary">
-                        <i class=""></i>Sabke Sir</h1>
-                </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
-                <div class="navbar-nav mx-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="/about" class="nav-item nav-link">About</a>
-                    <a href="/course" class="nav-item nav-link">Courses</a>
-                    <div class="nav-item dropdown">                    
-                    </div>
-                    <a href="/contact" class="nav-item nav-link">Contact</a>
-                </div>
-                <a href="#" class="btn btn-primary mr-3">Sing up</a>
-                 <a href="#" class="btn btn-success">Login</a>
-            </div>
-        </nav>
+<!-- Navbar (white - exact match index) -->
+<nav class="navbar" id="mainNav">
+    <a href="/" class="nav-brand">
+        <img src="{% static 'img/logo-.png' %}" alt="Logo">
+        <div class="nav-brand-text">
+            <div class="name">Sabke Sir</div>
+            <div class="tagline">Online Coaching</div>
+        </div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'app:live_classes_home' %}">Live Classes</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/course">Courses</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+        {% if user.is_authenticated %}
+        <a href="{% url 'app:logout' %}" class="btn-nav-outline" style="border-color:#EF4444;color:#EF4444;">Logout</a>
+        {% else %}
+        <a href="{% url 'app:signup' %}" class="btn-nav-outline">Sign Up</a>
+        <a href="{% url 'app:login' %}" class="btn-nav-fill">Login</a>
+        {% endif %}
     </div>
-    <!-- Navbar End -->
+    <!-- Hamburger for mobile -->
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
 
+<!-- Mobile Nav Drawer -->
+<div class="mobile-nav" id="mobileNav" onclick="closeMobileNavOutside(event)">
+    <div class="mobile-nav-panel">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()"><i class="fa fa-times"></i></button>
+        <div class="mobile-nav-brand">
+            <img src="{% static 'img/logo-.png' %}" alt="Logo">
+            <div>
+                <div class="name">Sabke Sir</div>
+                <div class="tagline">Online Coaching</div>
+            </div>
+        </div>
+        <a href="/"><i class="fa fa-home"></i>Home</a>
+        <a href="{% url 'app:live_classes_home' %}"><i class="fa fa-video"></i>Live Classes</a>
+        <a href="/about" class="active"><i class="fa fa-info-circle"></i>About</a>
+        <a href="/course"><i class="fa fa-book"></i>Courses</a>
+        <a href="/contact"><i class="fa fa-envelope"></i>Contact</a>
+        <div class="mobile-nav-actions">
+            {% if user.is_authenticated %}
+            <a href="{% url 'app:logout' %}" style="background:#FEF2F2;color:#EF4444;border:1.5px solid #FCA5A5;">Logout</a>
+            {% else %}
+            <a href="{% url 'app:signup' %}" style="background:var(--sky);color:var(--navy);border:1.5px solid var(--border);">Sign Up</a>
+            <a href="{% url 'app:login' %}" style="background:var(--blue);color:white;">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-    <!-- Header Start -->
-    
-    <!-- Header End -->
+<!-- Page Hero Banner (dark navy - same palette as index hero) -->
+<div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="ph-shape1"></div>
+    <div class="ph-shape2"></div>
+    <div class="page-hero-content">
+        <h1>About <span>Us</span></h1>
+        <div class="page-hero-breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep">/</span>
+            <span class="current">About Us</span>
+        </div>
+    </div>
+</div>
 
+<!-- Shimmer line below hero -->
+<div class="stats-shimmer"></div>
 
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100"
-     src="{% static 'img/about.jpeg' %}"
-     style="object-fit: cover;"
-     alt="About Image">
-                    </div>
+<!-- ===== ABOUT SECTION (white bg) ===== -->
+<section class="section">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-img-wrap reveal-left">
+                <img src="{% static 'img/about.jpeg' %}" alt="About Image">
+                <div class="about-badge">
+                    <div class="big">500+</div>
+                    <div class="sm">Happy Students</div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
-                        <h1 class="display-4">First Choice For Online Education Anywhere</h1>
-                    </div>
+            </div>
+            <div class="reveal-right">
+                <span class="sec-tag">About Us</span>
+                <h2 class="sec-heading">First Choice For <span>Online Education</span> Anywhere</h2>
+                <div class="sec-divider"></div>
+                <div class="about-text">
                     <p>We provide a trusted online coaching platform designed to make learning simple, effective, and accessible for every student. Our expert instructors deliver well-structured live classes along with recorded sessions, so learners can revise anytime at their own pace. With focused guidance, clear concepts, and continuous support, we help students build strong fundamentals and confidence. Our platform connects quality education with smart technology, ensuring a smooth learning experience. Whether it is exam preparation or concept clarity, we are committed to helping students achieve their academic goals with consistency and dedication.</p>
-                    <div class="row pt-3 mx-0">
-                        <div class="col-3 px-0">
-                            <div class="bg-success text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Available<span class="d-block">Subjects</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-primary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Online<span class="d-block">Courses</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-secondary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Skilled<span class="d-block">Instructors</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-warning text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Happy<span class="d-block">Students</span></h6>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
+                </div>
+</section>
 
-
-    <!-- Feature Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
-                        <h1 class="display-4">Why You Should Start Learning with Us?</h1>
-                    </div>
-                    <p class="mb-4 pb-2">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
-                    <div class="d-flex mb-3">
-                        <div class="btn-icon bg-primary mr-4">
-                            <i class="fa fa-2x fa-graduation-cap text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+<!-- ===== WHY CHOOSE US (light bg) ===== -->
+<section class="section section-bg">
+    <div class="section-inner">
+        <div class="why-grid">
+            <div class="reveal-left">
+                <span class="sec-tag">Why Choose Us?</span>
+                <h2 class="sec-heading">Why You Should <span>Start Learning</span> with Us?</h2>
+                <div class="sec-divider"></div>
+                <p style="color:var(--muted);font-size:15px;line-height:1.85;margin-bottom:0;">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
+                <div class="feature-list">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-blue"><i class="fa fa-graduation-cap"></i></div>
+                        <div>
                             <h4>Skilled Instructors</h4>
                             <p>Our experienced teachers explain Chemistry and Hindi in a simple and easy way, ensuring better understanding and concept clarity.</p>
                         </div>
                     </div>
-                    <div class="d-flex mb-3">
-                        <div class="btn-icon bg-secondary mr-4">
-                            <i class="fa fa-2x fa-certificate text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-gray"><i class="fa fa-certificate"></i></div>
+                        <div>
                             <h4>Course Completion Certificate</h4>
                             <p>Students receive a course completion certificate after finishing the Chemistry or Hindi course, recognizing their learning and effort.</p>
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div class="btn-icon bg-warning mr-4">
-                            <i class="fa fa-2x fa-book-reader text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-amber"><i class="fa fa-book-reader"></i></div>
+                        <div>
                             <h4>Online Classes</h4>
-                            <p class="m-0">e offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
+                            <p>We offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100"
-     src="{% static 'img/feature.jpeg' %}"
-     style="object-fit: cover;"
-     alt="About Image">
                     </div>
                 </div>
             </div>
+            <div class="why-img reveal-right">
+                <img src="{% static 'img/feature.jpeg' %}" alt="Feature Image">
+            </div>
         </div>
     </div>
-    <!-- Feature Start -->
+</section>
 
-<div class="sir-section">
-    <div class="sir-image">
-        <img src="{% static 'img/logo-.png' %}" alt="Sir Image">
+<!-- ===== SABKE SIR INTRO CARD (white) ===== -->
+<section class="section">
+    <div class="section-inner">
+        <div style="text-align:center;margin-bottom:52px;" class="reveal">
+            <span class="sec-tag">Our Institute</span>
+            <h2 class="sec-heading">Meet <span>Sabke Sir</span></h2>
+            <div class="sec-divider" style="margin:18px auto;"></div>
+        </div>
+        <div class="sir-card reveal">
+            <div class="sir-img-wrap">
+                <img src="{% static 'img/logo-.png' %}" alt="Sabke Sir">
+            </div>
+            <div class="sir-card-content">
+                <h2>Sabke Sir</h2>
+                <div class="role">Online Coaching Institute</div>
+                <p>Our coaching is founded with the aim of delivering quality education in Chemistry and Hindi through a structured, student-focused learning approach. We believe that strong concepts, personal guidance, and consistent practice lead to academic success.</p>
+                <p>With experienced teachers and smart online learning tools, we connect students with knowledge in a simple, clear, and effective way — anytime and anywhere.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="sir-content">
-        <h2>Sabke Sir</h2>
-        <p>
-                Our coaching is founded with the aim of delivering quality education in Chemistry and Hindi
-                through a structured, student-focused learning approach. We believe that strong concepts,
-                personal guidance, and consistent practice lead to academic success.
-            </p>
-            <p>
-                With experienced teachers and smart online learning tools, we connect students with
-                knowledge in a simple, clear, and effective way — anytime and anywhere.
-            </p>
+<!-- ===== STUDENT PHOTO ALBUM (light bg) ===== -->
+<div class="album-section">
+    <div class="album-inner">
+        <span class="sec-tag">Our Family</span>
+        <h2 class="sec-heading" style="margin-top:8px;">Student Photo <span>Album</span></h2>
+        <div class="sec-divider" style="margin:18px auto;"></div>
     </div>
-</div>    
- 
-
-<!-- Our Family Section -->
-<div class="family-section">
-    <h2 class="text-center mb-4">Student Photo Album</h2>
-
     <div class="slider">
         <div class="slide-track">
-            <img src="{% static 'img/f1.jpeg' %}">
-            <img src="{% static 'img/f2.jpeg' %}">
-            <img src="{% static 'img/f3.jpeg' %}">
-            <img src="{% static 'img/f4.jpeg' %}">
-            <img src="{% static 'img/f5.jpeg' %}">
-            <img src="{% static 'img/f6.jpeg' %}">
-
-            <!-- repeat images for smooth loop -->
-            <img src="{% static 'img/f1.jpeg' %}">
-            <img src="{% static 'img/f2.jpeg' %}">
-            <img src="{% static 'img/f3.jpeg' %}">
-            <img src="{% static 'img/f4.jpeg' %}">
-            <img src="{% static 'img/f5.jpeg' %}">
-            <img src="{% static 'img/f6.jpeg' %}">
+            <img src="{% static 'img/f1.jpeg' %}" alt="">
+            <img src="{% static 'img/f2.jpeg' %}" alt="">
+            <img src="{% static 'img/f3.jpeg' %}" alt="">
+            <img src="{% static 'img/f4.jpeg' %}" alt="">
+            <img src="{% static 'img/f5.jpeg' %}" alt="">
+            <img src="{% static 'img/f6.jpeg' %}" alt="">
+            <!-- duplicate for loop -->
+            <img src="{% static 'img/f1.jpeg' %}" alt="">
+            <img src="{% static 'img/f2.jpeg' %}" alt="">
+            <img src="{% static 'img/f3.jpeg' %}" alt="">
+            <img src="{% static 'img/f4.jpeg' %}" alt="">
+            <img src="{% static 'img/f5.jpeg' %}" alt="">
+            <img src="{% static 'img/f6.jpeg' %}" alt="">
         </div>
     </div>
 </div>
-    <!-- Our Family Section -->
 
-     <!-- Our Sir Section -->
-<div class="sir-section">
-    <div class="sir-image">
-        <img src="{% static 'img/about1.jpeg' %}" alt="Sir Image">
-    </div>
-
-    <div class="sir-content">
-        <h2>Er. Satendra Dhakad Sir</h2>
-        <p>
-            Er. Satendra Dhakad Sir is the founder and owner of the coaching institute and a highly
-    respected Chemistry faculty with over 10 years of teaching experience.
-    He has guided thousands of students by building strong conceptual clarity
-    in Chemistry and making complex topics simple and easy to understand.
-        </p>
-        <p>
-            His teaching style is practical, student-friendly, and focuses on concept-based learning, numerical
-    problem solving, and exam-oriented preparation.
-        </p>
-    </div>
-</div>    
-     <!-- Our Sir Section -->
-
-    <!-- Footer Start -->
-   <div class="container-fluid position-relative bg-dark text-white-50 py-3" style="margin-top: 30px;">
-    <div class="container-fluid px-5 mt-3 pt-3">
-        <div class="row">
-
-            <!-- Logo + About -->
-            <div class="col-md-4 mb-5 pr-2">
-                <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="{% static 'img/logo-.png' %}" 
-                        alt="Logo" 
-                        style="width:80px; height:auto; margin-right:8px;">
-                    <h1 class="m-0 text-uppercase text-primary">Sabke Sir</h1>
-                </a>
-                <p class="mt-1">
-                    Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures. Students can purchase courses here and learn from expert teachers.
-                </p>
+<!-- ===== ER. SATENDRA DHAKAD SIR (white) ===== -->
+<section class="section">
+    <div class="section-inner">
+        <div class="sir-card reveal" style="flex-direction:row-reverse;">
+            <div class="sir-img-wrap">
+                <img src="{% static 'img/about1.jpeg' %}" alt="Er. Satendra Dhakad Sir">
             </div>
-
-
-            <!-- Get In Touch -->
-            <div class="col-md-3 mb-2">
-                <h3 class="text-white mb-4">Get In Touch</h3>
-                <p><i class="fa fa-map-marker-alt mr-2"></i> Rajeev Nagar, Vidisha, Madhya Pradesh 464001, India</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+918962289226</p>
-                <p><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</p>
+            <div class="sir-card-content">
+                <h2>Er. Satendra Dhakad Sir</h2>
+                <div class="role">Founder &amp; Chemistry Faculty · 10+ Years Experience</div>
+                <p>Er. Satendra Dhakad Sir is the founder and owner of the coaching institute and a highly respected Chemistry faculty with over 10 years of teaching experience. He has guided thousands of students by building strong conceptual clarity in Chemistry and making complex topics simple and easy to understand.</p>
+                <p>His teaching style is practical, student-friendly, and focuses on concept-based learning, numerical problem solving, and exam-oriented preparation.</p>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Our Courses -->
-            <div class="col-md-2 mb-3">
-                <h3 class="text-white mb-4">Our Courses</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#">Web Design</a>
-                    <a class="text-white-50 mb-2" href="#">Apps Design</a>
-                    <a class="text-white-50 mb-2" href="#">Marketing</a>
-                    <a class="text-white-50 mb-2" href="#">Research</a>
-                    <a class="text-white-50" href="#">SEO</a>
+<!-- Footer (dark navy - exact match index) -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-about">
+            <a href="/" class="footer-logo">
+                <img src="{% static 'img/logo-.png' %}" alt="Logo">
+                <div class="footer-logo-text">
+                    <div class="nm">Sabke Sir</div>
+                    <div class="tg">Online Coaching</div>
                 </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-md-2 mb-3">
-                <h3 class="text-white mb-4">Quick Links</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#">Privacy Policy</a>
-                    <a class="text-white-50 mb-2" href="#">Terms & Condition</a>
-                    <a class="text-white-50 mb-2" href="#">Regular FAQs</a>
-                    <a class="text-white-50 mb-2" href="#">Help & Support</a>
-                    <a class="text-white-50" href="#">Contact</a>
-                </div>
-            </div>
-
+            </a>
+            <p>Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures. Students can purchase courses here and learn from expert teachers.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><i class="fa fa-map-marker-alt"></i>Rajeev Nagar, Vidisha, MP 464001</p>
+            <p><i class="fa fa-phone"></i>+918962289226</p>
+            <p><i class="fa fa-envelope"></i>sabkesirsatendrasir@gmail.com</p>
+        </div>
+        <div class="footer-col footer-links">
+            <h4>Our Courses</h4>
+            <a href="#">Web Design</a>
+            <a href="#">Apps Design</a>
+            <a href="#">Marketing</a>
+            <a href="#">Research</a>
+            <a href="#">SEO</a>
+        </div>
+        <div class="footer-col footer-links">
+            <h4>Quick Links</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Condition</a>
+            <a href="#">Regular FAQs</a>
+            <a href="#">Help &amp; Support</a>
+            <a href="/contact">Contact</a>
         </div>
     </div>
-</div>
-
-<div class="container-fluid bg-dark text-white-50 border-top py-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                &copy; 2026 Sabke Sir. All Rights Reserved.
-            </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Sabke Sir. All Rights Reserved.</p>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/share/1DixpuRW4Z/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/satendrasatyaj/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@sabkesirsatendrasir"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
-</div>
+</footer>
 
-    <!-- Footer End -->
+<a href="#" class="back-top"><i class="fa fa-angle-up"></i></a>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script>
+    /* Cursor dot */
+    const dot = document.getElementById('cursorDot');
+    document.addEventListener('mousemove', e => {
+        dot.style.left = e.clientX + 'px';
+        dot.style.top  = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => dot.classList.add('hover'));
+        el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+    });
 
+    /* Navbar scroll shadow */
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    });
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js '%}"></script>
-    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    /* Scroll Reveal */
+    const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => ro.observe(el));
 
-    <!-- Template Javascript -->
-    <script src="{% static 'js/main.js' %}"></script>
+    /* Subtle tilt on cards */
+    document.querySelectorAll('.sir-card, .feature-card').forEach(card => {
+        card.style.transformStyle = 'preserve-3d';
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left - r.width/2) * 0.03;
+            const y = (e.clientY - r.top  - r.height/2) * 0.03;
+            card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    /* ===== MOBILE NAV TOGGLE ===== */
+    function toggleMobileNav() {
+        const nav = document.getElementById('mobileNav');
+        const hamburger = document.getElementById('hamburger');
+        nav.classList.toggle('open');
+        hamburger.classList.toggle('open');
+        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMobileNavOutside(e) {
+        if (e.target === document.getElementById('mobileNav')) toggleMobileNav();
+    }
+</script>
 </body>
-
 </html>
