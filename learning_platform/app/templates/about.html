@@ -2,354 +2,802 @@
 {% load static %}
 <head>
     <meta charset="utf-8">
-    <title>Sabke sir - Online Education Website </title>
+    <title>Sabke Sir - About Us</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM Sans:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-         <link href="{% static 'css/about.css' %}" rel="stylesheet">
 
+    <style>
+        :root {
+            --navy:       #0D1B3E;
+            --navy-mid:   #162347;
+            --navy-light: #1E3060;
+            --blue:       #2563EB;
+            --blue-bright:#3B82F6;
+            --sky:        #EFF6FF;
+            --sky-soft:   #F0F7FF;
+            --gold:       #F59E0B;
+            --gold-light: #FBBF24;
+            --gold-pale:  #FFFBEB;
+            --green:      #10B981;
+            --white:      #FFFFFF;
+            --light-bg:   #F8FAFC;
+            --light-card: #FFFFFF;
+            --text:       #0F172A;
+            --text-soft:  #475569;
+            --text-muted: #94A3B8;
+            --border:     #E2E8F0;
+            --border-soft:#CBD5E1;
+        }
 
-    
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            background: var(--navy);
+            padding: 8px 0;
+            position: relative; overflow: hidden;
+        }
+        .topbar::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .topbar-inner {
+            max-width: 1200px; margin: auto; padding: 0 32px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .topbar-contact { display: flex; gap: 28px; }
+        .topbar-contact a {
+            color: rgba(255,255,255,0.65); font-size: 12.5px; text-decoration: none;
+            display: flex; align-items: center; gap: 8px; transition: color 0.25s; font-weight: 400;
+        }
+        .topbar-contact a:hover { color: var(--gold-light); }
+        .topbar-contact i { color: var(--gold); font-size: 11px; }
+        .topbar-social a {
+            color: rgba(255,255,255,0.45); margin-left: 14px; font-size: 13px;
+            transition: all 0.25s; display: inline-flex; align-items: center;
+            justify-content: center; width: 28px; height: 28px;
+            border-radius: 6px; background: rgba(255,255,255,0.06);
+        }
+        .topbar-social a:hover { color: var(--gold-light); background: rgba(245,158,11,0.2); transform: translateY(-1px); }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px; position: sticky; top: 0; z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(13,27,62,0.07);
+        }
+        .navbar.scrolled {
+            height: 64px;
+            box-shadow: 0 4px 32px rgba(13,27,62,0.12);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-brand img { width: 46px; height: auto; transition: transform 0.3s; }
+        .nav-brand:hover img { transform: rotate(-5deg) scale(1.08); }
+        .nav-brand-text .name {
+            font-family: 'DM Sans', sans-serif; font-size: 25px; font-weight: 800; line-height: 1;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-brand-text .tagline { font-size: 10.5px; color: var(--text-muted); font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 2px; list-style: none; }
+        .nav-links a {
+            color: var(--text-soft); text-decoration: none; font-size: 16px; font-weight: 500;
+            padding: 7px 16px; border-radius: 8px; transition: all 0.2s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 2px; background: var(--blue); border-radius: 1px; transition: width 0.25s ease;
+        }
+        .nav-links a:hover { color: var(--blue); background: var(--sky); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 60%; }
+        .nav-links a.active { color: var(--blue); background: var(--sky); }
+        .nav-actions { display: flex; gap: 10px; align-items: center; }
+        .btn-nav-outline {
+            padding: 8px 20px; border: 1.5px solid var(--border-soft); color: var(--navy);
+            background: transparent; border-radius: 8px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .btn-nav-outline:hover { background: var(--navy); color: white; border-color: var(--navy); }
+        .btn-nav-fill {
+            padding: 8px 22px; background: linear-gradient(135deg, var(--blue), var(--navy-light));
+            color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.25s; box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+        }
+        .btn-nav-fill:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,0.45); }
+
+        /* ── HAMBURGER BUTTON ── */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 6px;
+            color: var(--navy);
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        /* ── MOBILE MENU PANEL (same as index.html) ── */
+        .nav-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+        .nav-overlay.open { display: block; }
+        .mobile-menu {
+            position: fixed; top: 0; left: 0;
+            width: 78%; max-width: 300px; height: 100vh;
+            background: #fff; z-index: 1001;
+            display: flex; flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.28s ease;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.18);
+            overflow-y: auto;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mob-head {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 18px; border-bottom: 1px solid #E2E8F0;
+        }
+        .mob-head-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+        .mob-head-brand img { width: 36px; }
+        .mob-head-brand span {
+            font-size: 15px; font-weight: 800;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .mob-close { background: none; border: none; cursor: pointer; font-size: 20px; color: #475569; padding: 4px; }
+        .mob-links { list-style: none; flex: 1; padding: 8px 0; }
+        .mob-links li a {
+            display: block; padding: 13px 22px;
+            font-size: 14.5px; font-weight: 600; color: #0F172A;
+            text-decoration: none; border-bottom: 1px solid #F1F5F9;
+            transition: all 0.18s;
+        }
+        .mob-links li a:hover, .mob-links li a.active {
+            color: var(--blue); background: #EFF6FF; padding-left: 30px;
+        }
+        .mob-actions {
+            padding: 14px 18px 20px; border-top: 1px solid #E2E8F0;
+            display: flex; flex-direction: column; gap: 9px;
+        }
+        .mob-btn-out {
+            display: block; text-align: center; padding: 11px;
+            border: 1.5px solid #CBD5E1; color: #0D1B3E;
+            border-radius: 9px; font-size: 14px; font-weight: 600; text-decoration: none;
+        }
+        .mob-btn-out.red { border-color: #EF4444; color: #EF4444; }
+        .mob-btn-fill {
+            display: flex; align-items: center; justify-content: center; gap: 7px;
+            padding: 11px; background: linear-gradient(135deg, #2563EB, #1E3060);
+            color: white; border-radius: 9px; font-size: 14px; font-weight: 600; text-decoration: none;
+        }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            background: linear-gradient(140deg, var(--navy) 0%, var(--navy-mid) 50%, #1E2D6B 100%);
+            padding: 72px 60px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; min-height: 240px;
+        }
+        .page-hero-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 450px; height: 450px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(37,99,235,0.2), transparent 70%); pointer-events: none;
+        }
+        .page-hero::after {
+            content: ''; position: absolute; bottom: -80px; left: -80px;
+            width: 300px; height: 300px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(245,158,11,0.1), transparent 70%); pointer-events: none;
+        }
+        .page-hero-content { position: relative; z-index: 1; animation: fadeInUp 0.7s ease both; }
+        .page-hero-tag {
+            display: inline-block; background: rgba(245,158,11,0.12); color: #FDE68A;
+            font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px;
+            padding: 5px 18px; border-radius: 50px; margin-bottom: 18px;
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+        .page-hero h1 {
+            font-family: 'DM Sans', sans-serif; font-size: clamp(34px, 4vw, 52px);
+            font-weight: 800; color: white; line-height: 1.1;
+        }
+        .page-hero h1 span { color: var(--gold-light); }
+        .page-hero-breadcrumb {
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; margin-top: 18px;
+        }
+        .page-hero-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.2s; }
+        .page-hero-breadcrumb a:hover { color: var(--gold-light); }
+        .page-hero-breadcrumb .sep { color: rgba(255,255,255,0.25); font-size: 13px; }
+        .page-hero-breadcrumb .current { color: var(--gold-light); font-size: 13px; font-weight: 700; }
+
+        /* ── SHIMMER BAR ── */
+        .stats-shimmer {
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--gold), var(--green), var(--blue));
+            background-size: 200% auto; animation: gradientShift 4s linear infinite;
+        }
+        @keyframes gradientShift { to { background-position: 200% center; } }
+
+        /* ── SECTIONS ── */
+        .section { padding: 90px 0; background: var(--white); }
+        .section-inner { max-width: 1100px; margin: auto; padding: 0 44px; }
+        .section-bg { background: var(--sky-soft); }
+
+        .sec-tag {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: var(--sky); color: var(--blue);
+            font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2.5px; padding: 5px 14px; border-radius: 50px;
+            margin-bottom: 14px; border: 1px solid rgba(37,99,235,0.2);
+        }
+        .sec-tag::before { content: ''; width: 5px; height: 5px; background: var(--blue); border-radius: 50%; }
+        .sec-heading { font-family: 'DM Sans', sans-serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; color: var(--navy); line-height: 1.12; }
+        .sec-heading span { color: var(--blue); }
+        .sec-divider { width: 48px; height: 4px; background: linear-gradient(90deg, var(--blue), var(--gold)); border-radius: 2px; margin: 18px 0 24px; }
+
+        /* ── ABOUT GRID ── */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+        .about-img-wrap { position: relative; }
+        .about-img-wrap::before {
+            content: ''; position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px;
+            border: 2px solid rgba(37,99,235,0.12); border-radius: 26px; z-index: 0;
+        }
+        .about-img-wrap img {
+            width: 100%; height: 460px; object-fit: cover;
+            border-radius: 20px; display: block; position: relative; z-index: 1;
+            box-shadow: 0 24px 60px rgba(13,27,62,0.16); transition: transform 0.5s;
+        }
+        .about-img-wrap:hover img { transform: scale(1.02); }
+        .about-badge {
+            position: absolute; bottom: -20px; right: -20px; z-index: 2;
+            background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+            color: white; padding: 22px 26px; border-radius: 18px; text-align: center;
+            box-shadow: 0 16px 48px rgba(13,27,62,0.3); border: 1px solid rgba(255,255,255,0.07);
+        }
+        .about-badge .big {
+            font-family: 'DM Sans', sans-serif; font-size: 38px; font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1;
+        }
+        .about-badge .sm { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
+        .about-text p { color: var(--text-soft); font-size: 15px; line-height: 1.95; margin-bottom: 14px; }
+
+        /* ── HIGHLIGHTS ── */
+        .about-highlights { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+        .highlight-pill {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--white); border: 1px solid var(--border);
+            padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+            color: var(--navy); transition: all 0.25s; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .highlight-pill i { color: var(--green); font-size: 13px; }
+        .highlight-pill:hover { border-color: rgba(37,99,235,0.3); background: var(--sky); color: var(--blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.12); }
+        .highlight-pill:hover i { color: var(--blue); }
+
+        /* ── WHY CHOOSE US ── */
+        .why-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: center; }
+        .why-img { border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px rgba(13,27,62,0.14); }
+        .why-img img { width: 100%; height: 460px; object-fit: cover; display: block; transition: transform 0.5s; }
+        .why-img:hover img { transform: scale(1.04); }
+        .feature-list { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+        .feature-card {
+            display: flex; gap: 18px; align-items: flex-start;
+            background: var(--white); border: 1.5px solid var(--border);
+            border-radius: 16px; padding: 22px; transition: all 0.28s; position: relative; overflow: hidden;
+        }
+        .feature-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(180deg, var(--blue), var(--gold));
+            transform: scaleY(0); transform-origin: bottom; transition: transform 0.28s;
+        }
+        .feature-card:hover { border-color: rgba(37,99,235,0.25); box-shadow: 0 12px 32px rgba(37,99,235,0.1); transform: translateX(6px); }
+        .feature-card:hover::before { transform: scaleY(1); }
+        .feat-icon { width: 52px; height: 52px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .fi-blue  { background: var(--sky); color: var(--blue); border: 1px solid rgba(37,99,235,0.15); }
+        .fi-gray  { background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; }
+        .fi-amber { background: #FFFBEB; color: var(--gold); border: 1px solid #FDE68A; }
+        .feature-card h4 { font-family: 'DM Sans', sans-serif; font-size: 15.5px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+        .feature-card p { color: var(--text-soft); font-size: 13.5px; line-height: 1.75; margin: 0; }
+
+        /* ── SIR CARD ── */
+        .sir-card {
+            display: flex; gap: 52px; align-items: center;
+            background: var(--white); border: 1.5px solid var(--border);
+            border-radius: 24px; padding: 48px;
+            box-shadow: 0 8px 40px rgba(13,27,62,0.08);
+            transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .sir-card::before {
+            content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(37,99,235,0.06), transparent 70%); pointer-events: none;
+        }
+        .sir-card:hover { border-color: rgba(37,99,235,0.2); box-shadow: 0 16px 56px rgba(37,99,235,0.12); }
+        .sir-img-wrap {
+            flex-shrink: 0; width: 180px; height: 180px; border-radius: 50%;
+            overflow: hidden; border: 3px solid var(--border);
+            box-shadow: 0 0 0 6px rgba(37,99,235,0.07), 0 12px 36px rgba(13,27,62,0.15);
+        }
+        .sir-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .sir-card:hover .sir-img-wrap img { transform: scale(1.07); }
+        .sir-card-content h2 { font-family: 'DM Sans', sans-serif; font-size: 26px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+        .sir-card-content .role { color: var(--blue); font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 16px; }
+        .sir-card-content p { color: var(--text-soft); font-size: 15px; line-height: 1.9; }
+        .sir-card-content p + p { margin-top: 12px; }
+
+        /* ── PHOTO ALBUM ── */
+        .album-section { background: var(--sky-soft); padding: 90px 0; }
+        .album-inner { max-width: 1100px; margin: auto; padding: 0 44px; text-align: center; margin-bottom: 44px; }
+        .slider { overflow: hidden; position: relative; }
+        .slider::before, .slider::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
+        }
+        .slider::before { left: 0; background: linear-gradient(90deg, var(--sky-soft), transparent); }
+        .slider::after  { right: 0; background: linear-gradient(-90deg, var(--sky-soft), transparent); }
+        .slide-track { display: flex; gap: 16px; width: max-content; animation: slideLoop 30s linear infinite; }
+        .slide-track:hover { animation-play-state: paused; }
+        .slide-track img { width: 260px; height: 175px; object-fit: cover; border-radius: 14px; border: 1.5px solid var(--border); transition: transform 0.3s, box-shadow 0.3s; flex-shrink: 0; }
+        .slide-track img:hover { transform: scale(1.04); box-shadow: 0 10px 32px rgba(13,27,62,0.15); }
+        @keyframes slideLoop { 0%{transform:translateX(0);}100%{transform:translateX(-50%);} }
+
+        /* ── FOOTER ── */
+        footer { background: var(--navy); padding: 80px 0 0; position: relative; overflow: hidden; }
+        footer::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--gold), var(--green));
+        }
+        .footer-inner {
+            max-width: 1200px; margin: auto; padding: 0 40px;
+            display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr; gap: 48px; position: relative; z-index: 1;
+        }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; text-decoration: none; }
+        .footer-logo img { width: 46px; }
+        .footer-logo-text .nm { font-family: 'DM Sans', sans-serif; font-size: 19px; font-weight: 800; color: white; }
+        .footer-logo-text .tg { font-size: 10.5px; color: rgba(255,255,255,0.3); letter-spacing: 1.2px; text-transform: uppercase; }
+        .footer-about p { color: rgba(255,255,255,0.38); font-size: 13.5px; line-height: 1.9; }
+        .footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: white; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .footer-col p { color: rgba(255,255,255,0.4); font-size: 13.5px; line-height: 2.4; }
+        .footer-col p i { color: var(--gold); margin-right: 9px; width: 14px; }
+        .footer-links a { display: block; color: rgba(255,255,255,0.4); font-size: 13.5px; text-decoration: none; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); transition: all 0.25s; }
+        .footer-links a:hover { color: var(--gold-light); padding-left: 8px; }
+        .footer-bottom {
+            max-width: 1200px; margin: 56px auto 0; padding: 22px 40px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 13px; }
+        .footer-socials a {
+            color: rgba(255,255,255,0.3); margin-left: 14px; font-size: 15px;
+            width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; background: rgba(255,255,255,0.05); transition: all 0.25s;
+        }
+        .footer-socials a:hover { color: var(--gold-light); background: rgba(245,158,11,0.15); transform: translateY(-2px); }
+
+        /* ── BACK TO TOP ── */
+        .back-top {
+            position: fixed; bottom: 28px; right: 28px; width: 46px; height: 46px;
+            background: linear-gradient(135deg, var(--blue), var(--navy-light));
+            color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 16px; box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+            transition: all 0.3s; z-index: 999; opacity: 0; transform: translateY(20px);
+        }
+        .back-top.visible { opacity: 1; transform: translateY(0); }
+        .back-top:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(37,99,235,0.5); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left.in-view { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right.in-view { opacity: 1; transform: translateX(0); }
+        .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+            .hamburger-btn { display: block !important; }
+            .nav-links { display: none !important; }
+            .nav-actions { display: none !important; }
+            .navbar { padding: 0 16px !important; height: auto !important; min-height: 62px !important; }
+            .topbar-inner { flex-direction: column !important; gap: 4px !important; padding: 7px 14px !important; text-align: center !important; }
+            .topbar-contact { flex-wrap: wrap; justify-content: center; gap: 8px !important; }
+            .page-hero { padding: 50px 24px; min-height: 180px; }
+            .section { padding: 60px 0 !important; }
+            .section-inner { padding: 0 16px !important; }
+            .about-grid, .why-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+            .about-img-wrap img { height: 280px !important; }
+            .about-img-wrap::before { display: none; }
+            .about-badge { display: none !important; }
+            .why-img img { height: 260px !important; }
+            .sir-card { flex-direction: column !important; text-align: center; gap: 24px; padding: 32px 24px; }
+            .sir-img-wrap { width: 140px; height: 140px; }
+            .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 20px !important; padding: 0 16px !important; }
+            .footer-bottom { flex-direction: column !important; gap: 10px !important; text-align: center !important; padding: 16px !important; margin-top: 24px !important; }
+            .album-section { padding: 60px 0; }
+            .album-inner { padding: 0 16px; }
+        }
+        @media (max-width: 480px) {
+            .topbar-social { display: none !important; }
+            .footer-inner { grid-template-columns: 1fr !important; }
+            .page-hero h1 { font-size: 26px !important; }
+            .sir-card-content h2 { font-size: 20px; }
+            .sir-card { padding: 24px 16px; }
+            .sir-img-wrap { width: 120px; height: 120px; }
+            .slide-track img { width: 200px; height: 135px; }
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-dark">
-        <div class="row py-2 px-lg-5">
-            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+918962289226</small>
-                    <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</small>
+
+<!-- Topbar (same as index.html) -->
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="topbar-contact">
+            <a href="tel:+918962289226"><i class="fa fa-phone"></i>+91 89622 89226</a>
+            <a href="mailto:sabkesirsatendrasir@gmail.com"><i class="fa fa-envelope"></i>sabkesirsatendrasir@gmail.com</a>
+        </div>
+        <div class="topbar-social">
+            <a href="https://www.facebook.com/share/1DixpuRW4Z/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/satendrasatyaj/" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@sabkesirsatendrasir" title="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar (100% identical to index.html) -->
+<nav class="navbar" id="mainNav">
+    <a href="/" class="nav-brand">
+        <img src="{% static 'img/logo-.png' %}" alt="Logo">
+        <div class="nav-brand-text">
+            <div class="name">Sabke Sir</div>
+            <div class="tagline">Online Coaching</div>
+        </div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'app:live_classes_home' %}">Live Classes</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/course">Courses</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+        {% if user.is_authenticated %}
+        <a href="{% url 'app:logout' %}" class="btn-nav-outline" style="border-color:#EF4444;color:#EF4444;">Logout</a>
+        {% else %}
+        <a href="{% url 'app:signup' %}" class="btn-nav-outline">Sign Up</a>
+        <a href="{% url 'app:login' %}" class="btn-nav-fill">Login</a>
+        {% endif %}
+    </div>
+    <button class="hamburger-btn" id="hamburgerBtn">
+        <i class="fa fa-bars" id="hamburgerIcon"></i>
+    </button>
+</nav>
+
+<!-- Mobile Menu Panel (same as index.html) -->
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mob-head">
+        <a href="/" class="mob-head-brand">
+            <img src="{% static 'img/logo-.png' %}" alt="Logo">
+            <span>Sabke Sir</span>
+        </a>
+        <button class="mob-close" id="mobClose"><i class="fa fa-times"></i></button>
+    </div>
+    <ul class="mob-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'app:live_classes_home' %}">Live Classes</a></li>
+        <li><a href="/about" class="active">About</a></li>
+        <li><a href="/course">Courses</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+    <div class="mob-actions">
+        {% if user.is_authenticated %}
+        <a href="{% url 'app:logout' %}" class="mob-btn-out red"><i class="fa fa-sign-out-alt"></i> Logout</a>
+        {% else %}
+        <a href="{% url 'app:signup' %}" class="mob-btn-out">Sign Up</a>
+        <a href="{% url 'app:login' %}" class="mob-btn-fill"><i class="fa fa-user"></i> Login</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Page Hero Banner -->
+<div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-content">
+        <div class="page-hero-tag">Our Story</div>
+        <h1>About <span>Us</span></h1>
+        <div class="page-hero-breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep">/</span>
+            <span class="current">About Us</span>
+        </div>
+    </div>
+</div>
+
+<!-- Shimmer line -->
+<div class="stats-shimmer"></div>
+
+<!-- About Section -->
+<section class="section">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div class="about-img-wrap reveal-left">
+                <img src="{% static 'img/about.jpeg' %}" alt="About Us">
+                <div class="about-badge">
+                    <div class="big">500+</div>
+                    <div class="sm">Happy Students</div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-2" href="https://www.facebook.com/share/1DixpuRW4Z/">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-2" href="https://www.instagram.com/satendrasatyaj/">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-white pl-2" href="https://www.youtube.com/@sabkesirsatendrasir">
-                        <i class="fab fa-youtube"></i>
-                    </a>
+            <div class="reveal-right">
+                <span class="sec-tag">About Us</span>
+                <h2 class="sec-heading">First Choice For <span>Online Education</span> Anywhere</h2>
+                <div class="sec-divider"></div>
+                <div class="about-text">
+                    <p>We provide a trusted online coaching platform designed to make learning simple, effective, and accessible for every student. Our expert instructors deliver well-structured live classes along with recorded sessions, so learners can revise anytime at their own pace.</p>
+                    <p>With focused guidance, clear concepts, and continuous support, we help students build strong fundamentals and confidence. Our platform connects quality education with smart technology, ensuring a smooth learning experience. Whether it is exam preparation or concept clarity, we are committed to helping students achieve their academic goals.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-pill"><i class="fa fa-check-circle"></i> Expert Teachers</div>
+                    <div class="highlight-pill"><i class="fa fa-check-circle"></i> Live Classes</div>
+                    <div class="highlight-pill"><i class="fa fa-check-circle"></i> Recorded Lectures</div>
+                    <div class="highlight-pill"><i class="fa fa-check-circle"></i> Certificate</div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+</section>
 
-
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
-           {% load static %}
-                <a href="index.html" class="navbar-brand ml-lg-3 d-flex align-items-center">
-                    
-                    <!-- Logo image -->
-                    <img src="{% static 'img/logo-.png' %}" 
-                        alt="Logo" 
-                        style="width:80px; height:auto; margin-right:10px;">
-                    <h1 class="m-0 text-uppercase text-primary">
-                        <i class=""></i>Sabke Sir</h1>
-                </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
-                <div class="navbar-nav mx-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="/about" class="nav-item nav-link">About</a>
-                    <a href="/course" class="nav-item nav-link">Courses</a>
-                    <div class="nav-item dropdown">                    
-                    </div>
-                    <a href="/contact" class="nav-item nav-link">Contact</a>
-                </div>
-                <a href="#" class="btn btn-primary mr-3">Sing up</a>
-                 <a href="#" class="btn btn-success">Login</a>
-            </div>
-        </nav>
-    </div>
-    <!-- Navbar End -->
-
-
-    <!-- Header Start -->
-    
-    <!-- Header End -->
-
-
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100"
-     src="{% static 'img/about.jpeg' %}"
-     style="object-fit: cover;"
-     alt="About Image">
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">About Us</h6>
-                        <h1 class="display-4">First Choice For Online Education Anywhere</h1>
-                    </div>
-                    <p>We provide a trusted online coaching platform designed to make learning simple, effective, and accessible for every student. Our expert instructors deliver well-structured live classes along with recorded sessions, so learners can revise anytime at their own pace. With focused guidance, clear concepts, and continuous support, we help students build strong fundamentals and confidence. Our platform connects quality education with smart technology, ensuring a smooth learning experience. Whether it is exam preparation or concept clarity, we are committed to helping students achieve their academic goals with consistency and dedication.</p>
-                    <div class="row pt-3 mx-0">
-                        <div class="col-3 px-0">
-                            <div class="bg-success text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Available<span class="d-block">Subjects</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-primary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Online<span class="d-block">Courses</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-secondary text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">123</h1>
-                                <h6 class="text-uppercase text-white">Skilled<span class="d-block">Instructors</span></h6>
-                            </div>
-                        </div>
-                        <div class="col-3 px-0">
-                            <div class="bg-warning text-center p-4">
-                                <h1 class="text-white" data-toggle="counter-up">1234</h1>
-                                <h6 class="text-uppercase text-white">Happy<span class="d-block">Students</span></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-
-    <!-- Feature Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="section-title position-relative mb-4">
-                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">Why Choose Us?</h6>
-                        <h1 class="display-4">Why You Should Start Learning with Us?</h1>
-                    </div>
-                    <p class="mb-4 pb-2">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
-                    <div class="d-flex mb-3">
-                        <div class="btn-icon bg-primary mr-4">
-                            <i class="fa fa-2x fa-graduation-cap text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+<!-- Why Choose Us -->
+<section class="section section-bg">
+    <div class="section-inner">
+        <div class="why-grid">
+            <div class="reveal-left">
+                <span class="sec-tag">Why Choose Us?</span>
+                <h2 class="sec-heading">Why You Should <span>Start Learning</span> With Us?</h2>
+                <div class="sec-divider"></div>
+                <p style="color:var(--text-soft);font-size:15px;line-height:1.85;margin-bottom:0;">We provide focused online coaching for Chemistry and Hindi with clear concepts, structured lessons, and exam-oriented teaching to help students learn effectively and confidently.</p>
+                <div class="feature-list">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-blue"><i class="fa fa-graduation-cap"></i></div>
+                        <div>
                             <h4>Skilled Instructors</h4>
                             <p>Our experienced teachers explain Chemistry and Hindi in a simple and easy way, ensuring better understanding and concept clarity.</p>
                         </div>
                     </div>
-                    <div class="d-flex mb-3">
-                        <div class="btn-icon bg-secondary mr-4">
-                            <i class="fa fa-2x fa-certificate text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-gray"><i class="fa fa-certificate"></i></div>
+                        <div>
                             <h4>Course Completion Certificate</h4>
-                            <p>Students receive a course completion certificate after finishing the Chemistry or Hindi course, recognizing their learning and effort.</p>
+                            <p>Students receive a certificate after finishing the Chemistry or Hindi course, recognizing their learning and effort.</p>
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div class="btn-icon bg-warning mr-4">
-                            <i class="fa fa-2x fa-book-reader text-white"></i>
-                        </div>
-                        <div class="mt-n1">
+                    <div class="feature-card">
+                        <div class="feat-icon fi-amber"><i class="fa fa-laptop"></i></div>
+                        <div>
                             <h4>Online Classes</h4>
-                            <p class="m-0">e offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
+                            <p>We offer live online classes and recorded videos for Chemistry and Hindi, allowing students to learn and revise anytime.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100"
-     src="{% static 'img/feature.jpeg' %}"
-     style="object-fit: cover;"
-     alt="About Image">
                     </div>
                 </div>
             </div>
+            <div class="why-img reveal-right">
+                <img src="{% static 'img/feature.jpeg' %}" alt="Why Choose Us">
+            </div>
         </div>
     </div>
-    <!-- Feature Start -->
+</section>
 
-<div class="sir-section">
-    <div class="sir-image">
-        <img src="{% static 'img/logo-.png' %}" alt="Sir Image">
+<!-- Meet Sabke Sir Institute -->
+<section class="section">
+    <div class="section-inner">
+        <div style="text-align:center;margin-bottom:52px;" class="reveal">
+            <span class="sec-tag">Our Institute</span>
+            <h2 class="sec-heading">Meet <span>Sabke Sir</span></h2>
+            <div class="sec-divider" style="margin:18px auto;"></div>
+        </div>
+        <div class="sir-card reveal">
+            <div class="sir-img-wrap">
+                <img src="{% static 'img/logo-.png' %}" alt="Sabke Sir">
+            </div>
+            <div class="sir-card-content">
+                <h2>Sabke Sir</h2>
+                <div class="role">Online Coaching Institute</div>
+                <p>Our coaching is founded with the aim of delivering quality education in Chemistry and Hindi through a structured, student-focused learning approach. We believe that strong concepts, personal guidance, and consistent practice lead to academic success.</p>
+                <p>With experienced teachers and smart online learning tools, we connect students with knowledge in a simple, clear, and effective way — anytime and anywhere.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="sir-content">
-        <h2>Sabke Sir</h2>
-        <p>
-                Our coaching is founded with the aim of delivering quality education in Chemistry and Hindi
-                through a structured, student-focused learning approach. We believe that strong concepts,
-                personal guidance, and consistent practice lead to academic success.
-            </p>
-            <p>
-                With experienced teachers and smart online learning tools, we connect students with
-                knowledge in a simple, clear, and effective way — anytime and anywhere.
-            </p>
+<!-- Student Photo Album -->
+<div class="album-section">
+    <div class="album-inner reveal">
+        <span class="sec-tag">Our Family</span>
+        <h2 class="sec-heading" style="margin-top:8px;">Student Photo <span>Album</span></h2>
+        <div class="sec-divider" style="margin:18px auto;"></div>
     </div>
-</div>    
- 
-
-<!-- Our Family Section -->
-<div class="family-section">
-    <h2 class="text-center mb-4">Student Photo Album</h2>
-
     <div class="slider">
         <div class="slide-track">
-            <img src="{% static 'img/f1.jpeg' %}">
-            <img src="{% static 'img/f2.jpeg' %}">
-            <img src="{% static 'img/f3.jpeg' %}">
-            <img src="{% static 'img/f4.jpeg' %}">
-            <img src="{% static 'img/f5.jpeg' %}">
-            <img src="{% static 'img/f6.jpeg' %}">
-
-            <!-- repeat images for smooth loop -->
-            <img src="{% static 'img/f1.jpeg' %}">
-            <img src="{% static 'img/f2.jpeg' %}">
-            <img src="{% static 'img/f3.jpeg' %}">
-            <img src="{% static 'img/f4.jpeg' %}">
-            <img src="{% static 'img/f5.jpeg' %}">
-            <img src="{% static 'img/f6.jpeg' %}">
+            <img src="{% static 'img/f1.jpeg' %}" alt="">
+            <img src="{% static 'img/f2.jpeg' %}" alt="">
+            <img src="{% static 'img/f3.jpeg' %}" alt="">
+            <img src="{% static 'img/f4.jpeg' %}" alt="">
+            <img src="{% static 'img/f5.jpeg' %}" alt="">
+            <img src="{% static 'img/f6.jpeg' %}" alt="">
+            <!-- duplicates for infinite loop -->
+            <img src="{% static 'img/f1.jpeg' %}" alt="">
+            <img src="{% static 'img/f2.jpeg' %}" alt="">
+            <img src="{% static 'img/f3.jpeg' %}" alt="">
+            <img src="{% static 'img/f4.jpeg' %}" alt="">
+            <img src="{% static 'img/f5.jpeg' %}" alt="">
+            <img src="{% static 'img/f6.jpeg' %}" alt="">
         </div>
     </div>
 </div>
-    <!-- Our Family Section -->
 
-     <!-- Our Sir Section -->
-<div class="sir-section">
-    <div class="sir-image">
-        <img src="{% static 'img/about1.jpeg' %}" alt="Sir Image">
-    </div>
-
-    <div class="sir-content">
-        <h2>Er. Satendra Dhakad Sir</h2>
-        <p>
-            Er. Satendra Dhakad Sir is the founder and owner of the coaching institute and a highly
-    respected Chemistry faculty with over 10 years of teaching experience.
-    He has guided thousands of students by building strong conceptual clarity
-    in Chemistry and making complex topics simple and easy to understand.
-        </p>
-        <p>
-            His teaching style is practical, student-friendly, and focuses on concept-based learning, numerical
-    problem solving, and exam-oriented preparation.
-        </p>
-    </div>
-</div>    
-     <!-- Our Sir Section -->
-
-    <!-- Footer Start -->
-   <div class="container-fluid position-relative bg-dark text-white-50 py-3" style="margin-top: 30px;">
-    <div class="container-fluid px-5 mt-3 pt-3">
-        <div class="row">
-
-            <!-- Logo + About -->
-            <div class="col-md-4 mb-5 pr-2">
-                <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="{% static 'img/logo-.png' %}" 
-                        alt="Logo" 
-                        style="width:80px; height:auto; margin-right:8px;">
-                    <h1 class="m-0 text-uppercase text-primary">Sabke Sir</h1>
-                </a>
-                <p class="mt-1">
-                    Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures. Students can purchase courses here and learn from expert teachers.
-                </p>
+<!-- Er. Satendra Dhakad Sir -->
+<section class="section">
+    <div class="section-inner">
+        <div class="sir-card reveal" style="flex-direction:row-reverse;">
+            <div class="sir-img-wrap">
+                <img src="{% static 'img/about1.jpeg' %}" alt="Er. Satendra Dhakad Sir">
             </div>
-
-
-            <!-- Get In Touch -->
-            <div class="col-md-3 mb-2">
-                <h3 class="text-white mb-4">Get In Touch</h3>
-                <p><i class="fa fa-map-marker-alt mr-2"></i> Rajeev Nagar, Vidisha, Madhya Pradesh 464001, India</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+918962289226</p>
-                <p><i class="fa fa-envelope mr-2"></i>sabkesirsatendrasir@gmail.com</p>
+            <div class="sir-card-content">
+                <h2>Er. Satendra Dhakad Sir</h2>
+                <div class="role">Founder &amp; Chemistry Faculty · 10+ Years Experience</div>
+                <p>Er. Satendra Dhakad Sir is the founder and owner of the coaching institute and a highly respected Chemistry faculty with over 10 years of teaching experience. He has guided thousands of students by building strong conceptual clarity in Chemistry and making complex topics simple and easy to understand.</p>
+                <p>His teaching style is practical, student-friendly, and focuses on concept-based learning, numerical problem solving, and exam-oriented preparation.</p>
             </div>
+        </div>
+    </div>
+</section>
 
-            <!-- Our Courses -->
-            <div class="col-md-2 mb-3">
-                <h3 class="text-white mb-4">Our Courses</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#">Web Design</a>
-                    <a class="text-white-50 mb-2" href="#">Apps Design</a>
-                    <a class="text-white-50 mb-2" href="#">Marketing</a>
-                    <a class="text-white-50 mb-2" href="#">Research</a>
-                    <a class="text-white-50" href="#">SEO</a>
+<!-- Footer (same as index.html) -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-about">
+            <a href="/" class="footer-logo">
+                <img src="{% static 'img/footer-logo.jpeg' %}" alt="Logo">
+                <div class="footer-logo-text">
+                    <div class="nm">Sabke Sir</div>
+                    <div class="tg">Online Coaching</div>
                 </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-md-2 mb-3">
-                <h3 class="text-white mb-4">Quick Links</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#">Privacy Policy</a>
-                    <a class="text-white-50 mb-2" href="#">Terms & Condition</a>
-                    <a class="text-white-50 mb-2" href="#">Regular FAQs</a>
-                    <a class="text-white-50 mb-2" href="#">Help & Support</a>
-                    <a class="text-white-50" href="#">Contact</a>
-                </div>
-            </div>
-
+            </a>
+            <p>Sabke Sir Coaching Institute is an online learning platform where students can attend live classes and also watch recorded lectures. Students can purchase courses here and learn from expert teachers.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><i class="fa fa-map-marker-alt"></i>Rajeev Nagar, Vidisha, MP 464001</p>
+            <p><i class="fa fa-phone"></i>+918962289226</p>
+            <p><i class="fa fa-envelope"></i>sabkesirsatendrasir@gmail.com</p>
+        </div>
+        <div class="footer-col footer-links">
+            <h4>Our Courses</h4>
+            <a href="#">Chemistry</a>
+            <a href="#">Hindi</a>
+            <a href="#">Live Classes</a>
+            <a href="#">Recorded Lectures</a>
+        </div>
+        <div class="footer-col footer-links">
+            <h4>Quick Links</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Condition</a>
+            <a href="#">FAQs</a>
+            <a href="#">Help &amp; Support</a>
+            <a href="/contact">Contact</a>
         </div>
     </div>
-</div>
-
-<div class="container-fluid bg-dark text-white-50 border-top py-2">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                &copy; 2026 Sabke Sir. All Rights Reserved.
-            </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Sabke Sir. All Rights Reserved.</p>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/share/1DixpuRW4Z/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/satendrasatyaj/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@sabkesirsatendrasir"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
-</div>
+</footer>
 
-    <!-- Footer End -->
+<a href="#" class="back-top" id="backTop"><i class="fa fa-angle-up"></i></a>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script>
+    /* ── NAVBAR SCROLL ── */
+    const nav = document.getElementById('mainNav');
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        backTop.classList.toggle('visible', window.scrollY > 300);
+    }, { passive: true });
 
+    /* ── SCROLL REVEAL ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('in-view');
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js '%}"></script>
-    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    /* ── SMOOTH SCROLL ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
 
-    <!-- Template Javascript -->
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- HAMBURGER JS (same as index.html) -->
+<script>
+    (function(){
+        var btn = document.getElementById('hamburgerBtn');
+        if(!btn) return;
+        var links = document.querySelector('.nav-links');
+        var actions = document.querySelector('.nav-actions');
+        var icon = document.getElementById('hamburgerIcon');
+        btn.addEventListener('click', function(e){
+            e.stopPropagation();
+            var open = links.classList.toggle('mob-open');
+            if(actions) actions.classList.toggle('mob-open', open);
+            icon.className = open ? 'fa fa-times' : 'fa fa-bars';
+        });
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('.navbar')){
+                links.classList.remove('mob-open');
+                if(actions) actions.classList.remove('mob-open');
+                icon.className = 'fa fa-bars';
+            }
+        });
+    })();
+</script>
+
+<!-- MOBILE MENU PANEL JS (same as index.html) -->
+<script>
+(function(){
+    var menu    = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('navOverlay');
+    var openBtn = document.getElementById('hamburgerBtn');
+    var closeBtn= document.getElementById('mobClose');
+    if(!menu) return;
+    function openMenu(){ menu.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; }
+    if(openBtn) openBtn.addEventListener('click', function(e){ e.stopPropagation(); openMenu(); });
+    if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if(overlay) overlay.addEventListener('click', closeMenu);
+})();
+</script>
+
 </body>
-
 </html>

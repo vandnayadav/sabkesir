@@ -135,3 +135,28 @@
     
 })(jQuery);
 
+function toggleNav() {
+    const links = document.getElementById('navLinks');
+    const actions = document.getElementById('navActions');
+    const icon = document.getElementById('hamburgerIcon');
+    
+    links.classList.toggle('open');
+    actions.classList.toggle('open');
+    
+    // Icon change karo
+    icon.className = links.classList.contains('open') 
+        ? 'fa fa-times' 
+        : 'fa fa-bars';
+}
+
+// Navbar ke bahar click karne par band ho jaaye
+document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mainNav');
+    const btn = document.getElementById('hamburgerBtn');
+    if (!nav.contains(e.target)) {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('navActions').classList.remove('open');
+        document.getElementById('hamburgerIcon').className = 'fa fa-bars';
+    }
+});
+
