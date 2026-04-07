@@ -89,7 +89,4 @@ http://127.0.0.1:8000/
 
 ---
 
-## 🔑 Email Configuration (Important)
-
-For forgot password functionality, configure Gmail SMTP:
 
